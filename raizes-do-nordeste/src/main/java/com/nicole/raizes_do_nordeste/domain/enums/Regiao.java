@@ -2,6 +2,7 @@ package com.nicole.raizes_do_nordeste.domain.enums;
 
 public enum Regiao {
     NORDESTE,
-    NORDE,
-    CENTROOESTE
+    NORTE,
+    CENTROOESTE,
+    SUL
 }

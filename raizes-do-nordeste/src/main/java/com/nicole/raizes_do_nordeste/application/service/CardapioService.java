@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CardapioService {
-    //criar cardapio, adicionar e remover produto
+    //criar cardapio, adicionar e remover ItemCardapio
     @Autowired
     private CardapioRepository repository;
 
