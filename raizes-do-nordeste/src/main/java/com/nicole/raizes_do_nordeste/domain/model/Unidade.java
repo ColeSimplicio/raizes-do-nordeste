@@ -32,8 +32,8 @@ public class Unidade {
     @OneToMany(mappedBy = "unidade")
     private List<Estoque> estoques = new ArrayList<>();
 
-    @OneToMany(mappedBy = "unidade")
-    private List<Cardapio> cardapio = new ArrayList<>();
+    @OneToOne(mappedBy = "unidade")
+    private Cardapio cardapio;
 
     @OneToMany(mappedBy = "unidade")
     private List<Pedido> pedidos = new ArrayList<>();

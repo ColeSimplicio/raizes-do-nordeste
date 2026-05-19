@@ -22,7 +22,7 @@ public class Cardapio {
     private LocalDate dataInicio;
     private LocalDate dataFim;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "unidade_id")
     private Unidade unidade;
 
@@ -31,4 +31,6 @@ public class Cardapio {
             orphanRemoval = true)
     private List<ItemCardapio> itens = new ArrayList<>();
 
+    public Cardapio(Unidade unidade) {
+    }
 }
