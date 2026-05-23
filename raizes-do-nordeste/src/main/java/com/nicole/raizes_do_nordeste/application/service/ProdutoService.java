@@ -2,9 +2,12 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
 import com.nicole.raizes_do_nordeste.application.dto.request.ProdutoRequest;
+import com.nicole.raizes_do_nordeste.application.dto.response.ProdutoResponse;
 import com.nicole.raizes_do_nordeste.domain.model.Produto;
 import com.nicole.raizes_do_nordeste.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +27,7 @@ public class ProdutoService {
     public void removerProduto(Long id){
         Produto produto = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-        repository.deleteById(id);
+        repository.delete(produto);
     }
 
     public Produto editarProduto(ProdutoRequest dados, Long id){
@@ -36,7 +39,12 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public List<Produto> listarProdutos(){
-        return repository.findAll();
+
+    public Page<ProdutoResponse> listarProdutos(
+            Pageable pageable
+    ){
+
+        return repository.findAll(pageable)
+                .map(ProdutoResponse::new);
     }
 }

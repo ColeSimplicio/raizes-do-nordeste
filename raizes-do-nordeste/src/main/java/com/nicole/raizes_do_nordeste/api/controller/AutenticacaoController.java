@@ -2,6 +2,7 @@ package com.nicole.raizes_do_nordeste.api.controller;
 
 
 import com.nicole.raizes_do_nordeste.application.dto.request.CadastroRequest;
+import com.nicole.raizes_do_nordeste.application.dto.response.UsuarioResponse;
 import com.nicole.raizes_do_nordeste.application.service.UsuarioService;
 import com.nicole.raizes_do_nordeste.domain.model.Usuario;
 import jakarta.transaction.Transactional;
@@ -36,7 +37,7 @@ public class AutenticacaoController {
                 .buildAndExpand(usuario.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(usuario);
+        return ResponseEntity.created(uri).body(new UsuarioResponse(usuario));
     }
 }
 

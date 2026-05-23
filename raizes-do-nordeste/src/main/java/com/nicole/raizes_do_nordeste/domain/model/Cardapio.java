@@ -16,11 +16,10 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 @Getter
 public class Cardapio {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean disponivel;
-    private LocalDate dataInicio;
-    private LocalDate dataFim;
 
     @OneToOne
     @JoinColumn(name = "unidade_id")
@@ -32,5 +31,15 @@ public class Cardapio {
     private List<ItemCardapio> itens = new ArrayList<>();
 
     public Cardapio(Unidade unidade) {
+        this.disponivel = true;
+        this.unidade = unidade;
+    }
+
+    public void adicionarItem(ItemCardapio item){
+        this.itens.add(item);
+    }
+
+    public void removerItem(ItemCardapio item){
+        this.itens.remove(item);
     }
 }

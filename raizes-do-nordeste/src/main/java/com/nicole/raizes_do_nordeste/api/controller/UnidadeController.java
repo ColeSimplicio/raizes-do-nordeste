@@ -1,16 +1,17 @@
 package com.nicole.raizes_do_nordeste.api.controller;
 
 import com.nicole.raizes_do_nordeste.application.dto.request.UnidadeRequest;
+import com.nicole.raizes_do_nordeste.application.dto.response.UnidadeResponse;
 import com.nicole.raizes_do_nordeste.application.service.UnidadeService;
 import com.nicole.raizes_do_nordeste.domain.model.Unidade;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/unidades")
@@ -19,7 +20,7 @@ public class UnidadeController {
     UnidadeService service;
     @PostMapping
     @Transactional
-    public ResponseEntity criarUnidade(@RequestBody @Valid UnidadeRequest dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<UnidadeResponse> criarUnidade(@RequestBody @Valid UnidadeRequest dados, UriComponentsBuilder uriBuilder){
         Unidade unidade = service.criarUnidade(dados);
 
         var uri = uriBuilder
@@ -27,30 +28,32 @@ public class UnidadeController {
                 .buildAndExpand(unidade.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(unidade);
+        return ResponseEntity.created(uri).body(new UnidadeResponse(unidade));
     }
-
+    
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity removerUnidade(@PathVariable Long id){
+    public ResponseEntity<Void> removerUnidade(@PathVariable Long id){
         service.removerUnidade(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity editarUnidade(@PathVariable Long id, @RequestBody @Valid UnidadeRequest dados){
+    public ResponseEntity<UnidadeResponse> editarUnidade(@PathVariable Long id, @RequestBody @Valid UnidadeRequest dados){
         Unidade unidade = service.editarUnidade(id, dados);
 
-        return ResponseEntity.ok(unidade);
+        return ResponseEntity.ok(new UnidadeResponse(unidade));
     }
 
     @GetMapping
-    public ResponseEntity listarUnidades(){
-        List<Unidade> unidadeList = service.listarUnidades();
+    public ResponseEntity<Page<UnidadeResponse>> listarUnidades(
+            Pageable pageable
+    ){
 
-        return unidadeList.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(unidadeList);
+        Page<UnidadeResponse> unidades =
+                service.listarUnidades(pageable);
+
+        return ResponseEntity.ok(unidades);
     }
 }

@@ -1,11 +1,14 @@
 package com.nicole.raizes_do_nordeste.api.controller;
 
 import com.nicole.raizes_do_nordeste.application.dto.request.ProdutoRequest;
+import com.nicole.raizes_do_nordeste.application.dto.response.ProdutoResponse;
 import com.nicole.raizes_do_nordeste.application.service.ProdutoService;
 import com.nicole.raizes_do_nordeste.domain.model.Produto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,13 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-    // CRUD, produtos disponíveis, consulta
     @Autowired
     ProdutoService produtoService;
 
     @PostMapping
     @Transactional
-    public ResponseEntity adicionarProduto(@RequestBody @Valid ProdutoRequest dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<ProdutoResponse> adicionarProduto(@RequestBody @Valid ProdutoRequest dados, UriComponentsBuilder uriBuilder){
         Produto produto = produtoService.criarProduto(dados);
 
         var uri = uriBuilder
@@ -28,32 +30,32 @@ public class ProdutoController {
                 .buildAndExpand(produto.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(produto);
+        return ResponseEntity.created(uri).body(new ProdutoResponse(produto));
     }
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity editarProduto(
+    public ResponseEntity<ProdutoResponse> editarProduto(
             @PathVariable Long id,
             @RequestBody @Valid ProdutoRequest dados
     ) {
         Produto produto = produtoService.editarProduto(dados, id);
 
-        return ResponseEntity.ok(produto);
+        return ResponseEntity.ok(new ProdutoResponse(produto));
     }
 
     @GetMapping
-    public ResponseEntity listarProdutos() {
-        List<Produto> produtoList = produtoService.listarProdutos();
+    public ResponseEntity listarProdutos(Pageable pageable) {
+        Page<ProdutoResponse> produtos =
+                produtoService.listarProdutos(pageable);
 
-        return produtoList.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(produtoList);
+        return ResponseEntity.ok(produtos);
+
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity deletarProduto(@PathVariable Long id){
+    public ResponseEntity<Void> deletarProduto(@PathVariable Long id){
         produtoService.removerProduto(id);
         return ResponseEntity.noContent().build();
     }

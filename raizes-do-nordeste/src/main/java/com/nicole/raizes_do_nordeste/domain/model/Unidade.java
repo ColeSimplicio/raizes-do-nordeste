@@ -32,7 +32,7 @@ public class Unidade {
     @OneToMany(mappedBy = "unidade")
     private List<Estoque> estoques = new ArrayList<>();
 
-    @OneToOne(mappedBy = "unidade")
+    @OneToOne(mappedBy = "unidade", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cardapio cardapio;
 
     @OneToMany(mappedBy = "unidade")
@@ -43,6 +43,7 @@ public class Unidade {
         this.regiao = dados.regiao();
         this.tipo = dados.tipo();
         this.saldo = BigDecimal.valueOf(0);
+        this.cardapio = new Cardapio(this);
     }
 
     public void atualizarDados(UnidadeRequest dados){
