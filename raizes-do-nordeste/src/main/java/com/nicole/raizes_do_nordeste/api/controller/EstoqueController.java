@@ -5,11 +5,13 @@ import com.nicole.raizes_do_nordeste.application.dto.response.EstoqueResponse;
 import com.nicole.raizes_do_nordeste.application.service.EstoqueService;
 import com.nicole.raizes_do_nordeste.domain.model.Estoque;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/estoque")
@@ -20,63 +22,75 @@ public class EstoqueController {
 
     @PostMapping("/unidades/{unidadeId}/produtos/{produtoId}")
     @Transactional
-    public ResponseEntity<Void> adicionarProduto(
+    public ResponseEntity<EstoqueResponse> adicionarProduto(
             @PathVariable Long unidadeId,
             @PathVariable Long produtoId,
-            @RequestBody EstoqueRequest dados
+            @RequestBody @Valid EstoqueRequest dados,
+            UriComponentsBuilder uriBuilder
     ) {
 
-        estoqueService.adicionarProdutoNoEstoque(unidadeId, produtoId, dados);
+        Estoque estoque = estoqueService.adicionarProdutoNoEstoque(
+                unidadeId,
+                produtoId,
+                dados
+        );
 
-        return ResponseEntity.ok().build();
+        var uri = uriBuilder
+                .path("/estoque/unidades/{unidadeId}/produtos/{produtoId}")
+                .buildAndExpand(unidadeId, produtoId)
+                .toUri();
+
+        return ResponseEntity
+                .created(uri)
+                .body(new EstoqueResponse(estoque));
     }
 
-    @PutMapping("/entrada")
+    @PutMapping("/unidades/{unidadeId}/produtos/{produtoId}")
     @Transactional
-    public ResponseEntity<Void> entrada(
-            @RequestParam Long unidadeId,
-            @RequestParam Long produtoId,
-            @RequestParam Integer quantidade
+    public ResponseEntity<EstoqueResponse> atualizarQuantidade(
+            @PathVariable Long unidadeId,
+            @PathVariable Long produtoId,
+            @RequestBody @Valid EstoqueRequest dados
     ) {
 
-        estoqueService.entradaEstoque(unidadeId, produtoId, quantidade);
+        Estoque estoque = estoqueService.atualizarQuantidade(
+                unidadeId,
+                produtoId,
+                dados.quantidade()
+        );
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(
+                new EstoqueResponse(estoque)
+        );
     }
 
-    @PutMapping("/saida")
+    @DeleteMapping("/unidades/{unidadeId}/produtos/{produtoId}")
     @Transactional
-    public ResponseEntity<Void> saida(
-            @RequestParam Long unidadeId,
-            @RequestParam Long produtoId,
-            @RequestParam Integer quantidade
+    public ResponseEntity<Void> removerProduto(
+            @PathVariable Long unidadeId,
+            @PathVariable Long produtoId
     ) {
 
-        estoqueService.saidaEstoque(unidadeId, produtoId, quantidade);
+        estoqueService.removerProdutoDoEstoque(
+                unidadeId,
+                produtoId
+        );
 
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping
-    @Transactional
-    public ResponseEntity<Void> atualizar(
-            @RequestParam Long unidadeId,
-            @RequestParam Long produtoId,
-            @RequestParam Integer quantidade
-    ) {
-
-        estoqueService.atualizarQuantidade(unidadeId, produtoId, quantidade);
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/unidades/{unidadeId}")
-    public ResponseEntity<List<Estoque>> listar(
-            @PathVariable Long unidadeId
+    public ResponseEntity<Page<EstoqueResponse>> listar(
+            @PathVariable Long unidadeId,
+            Pageable pageable
     ) {
 
-        return ResponseEntity.ok(
-                estoqueService.listarEstoqueDaUnidade(unidadeId)
-        );
+        Page<EstoqueResponse> estoques =
+                estoqueService.listarEstoqueDaUnidade(
+                        unidadeId,
+                        pageable
+                );
+
+        return ResponseEntity.ok(estoques);
     }
 }
