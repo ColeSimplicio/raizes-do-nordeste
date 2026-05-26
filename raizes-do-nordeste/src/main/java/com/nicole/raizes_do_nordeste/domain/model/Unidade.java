@@ -4,10 +4,7 @@ import com.nicole.raizes_do_nordeste.application.dto.request.UnidadeRequest;
 import com.nicole.raizes_do_nordeste.domain.enums.Regiao;
 import com.nicole.raizes_do_nordeste.domain.enums.Tipo;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,6 +24,7 @@ public class Unidade {
     private Regiao regiao;
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
+    @Setter
     private BigDecimal saldo;
 
     @OneToMany(mappedBy = "unidade")

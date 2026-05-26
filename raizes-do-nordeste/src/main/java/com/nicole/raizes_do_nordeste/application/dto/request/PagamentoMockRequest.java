@@ -2,14 +2,8 @@ package com.nicole.raizes_do_nordeste.application.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 
-
-public record ItemPedidoRequest(
-
+public record PagamentoMockRequest(
         @NotNull
-        Long produtoId,
-
-        @NotNull
-        Integer quantidade
-
+        Boolean aprovado
 ) {
 }

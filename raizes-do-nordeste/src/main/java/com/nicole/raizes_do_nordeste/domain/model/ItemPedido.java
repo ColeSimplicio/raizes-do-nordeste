@@ -15,14 +15,15 @@ import java.math.BigDecimal;
 public class ItemPedido {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Setter
     private Integer quantidade;
+    @Setter
     private BigDecimal precoUnitario;
 
-    public ItemPedido(ItemPedidoRequest dados) {
+    public ItemPedido(ItemPedidoRequest dados, Produto produto, Pedido pedido) {
         this.quantidade = dados.quantidade();
-        this.precoUnitario = dados.precoUnitario();
-        this.produto = dados.produto();
-        this.pedido = dados.pedido();
+        this.produto = produto;
+        this.pedido = pedido;
     }
 
     public BigDecimal calcularSubtotal() {
@@ -31,6 +32,7 @@ public class ItemPedido {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id")
+    @Setter
     private Produto produto;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -22,6 +22,7 @@ public class Usuario {
     private String email;
     @Setter
     private String senha;
+    @Setter
     private Integer pontosFidelidade;
     @Enumerated(EnumType.STRING)
     private Role role;

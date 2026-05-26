@@ -12,4 +12,9 @@ public interface ItemCardapioRepository extends JpaRepository<ItemCardapio, Long
             Long cardapioId,
             Pageable pageable
     );
+
+    Optional<ItemCardapio> findByCardapioUnidadeIdAndProdutoId(
+            Long unidadeId,
+            Long produtoId
+    );
 }

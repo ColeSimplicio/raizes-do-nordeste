@@ -5,19 +5,18 @@ import com.nicole.raizes_do_nordeste.domain.model.ItemPedido;
 import java.math.BigDecimal;
 
 public record ItemPedidoResponse(
-        Long id,
+        Long produtoId,
+        String nomeProduto,
         Integer quantidade,
-        BigDecimal precoUnitario,
-        BigDecimal subtotal,
-        ProdutoResponse produto
+        BigDecimal precoUnitario
 ) {
+
     public ItemPedidoResponse(ItemPedido item) {
         this(
-                item.getId(),
+                item.getProduto().getId(),
+                item.getProduto().getNomeProduto(),
                 item.getQuantidade(),
-                item.getPrecoUnitario(),
-                item.calcularSubtotal(),
-                new ProdutoResponse(item.getProduto())
+                item.getPrecoUnitario()
         );
     }
 }
