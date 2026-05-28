@@ -54,7 +54,7 @@ public class PagamentoService {
             pagamento.aprovarPagamento();
 
             pedido.atualizarStatus(
-                    StatusPedido.ENTREGUE
+                    StatusPedido.PRONTO
             );
 
             for (ItemPedido item : pedido.getItens()) {
@@ -72,6 +72,11 @@ public class PagamentoService {
 
                 estoque.setQuantidade(
                         estoque.getQuantidade()
+                                - item.getQuantidade()
+                );
+
+                estoque.setReservado(
+                        estoque.getReservado()
                                 - item.getQuantidade()
                 );
             }
@@ -93,6 +98,25 @@ public class PagamentoService {
             pagamento.recusarPagamento();
 
             pedido.cancelarPedido();
+
+            for (ItemPedido item : pedido.getItens()) {
+
+                Estoque estoque =
+                        estoqueRepository
+                                .findByUnidadeIdAndProdutoId(
+                                        pedido.getUnidade().getId(),
+                                        item.getProduto().getId()
+                                )
+                                .orElseThrow(() ->
+                                        new RuntimeException(
+                                                "Estoque não encontrado"
+                                        ));
+
+                estoque.setReservado(
+                        estoque.getReservado()
+                                - item.getQuantidade()
+                );
+            }
         }
 
         pagamentoRepository.save(pagamento);

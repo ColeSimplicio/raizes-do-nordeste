@@ -16,6 +16,8 @@ public class Estoque {
     private Long id;
     @Setter
     private Integer quantidade;
+    @Setter
+    private Integer reservado = 0;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "unidade_id")
@@ -24,6 +26,10 @@ public class Estoque {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id")
     private Produto produto;
+
+    public Integer getDisponivel() {
+        return quantidade - reservado;
+    }
 
     public Estoque(EstoqueRequest dados,Unidade unidade, Produto produto) {
         this.quantidade = dados.quantidade();

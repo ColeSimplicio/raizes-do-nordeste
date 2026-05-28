@@ -91,4 +91,6 @@ public class PedidoController {
                 )
         );
     }
+
+    /// query por canal de pedido
 }

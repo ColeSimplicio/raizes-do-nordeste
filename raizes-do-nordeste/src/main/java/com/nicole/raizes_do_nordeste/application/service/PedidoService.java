@@ -107,8 +107,7 @@ public class PedidoService {
                                             "Produto sem estoque"
                                     ));
 
-            if (estoque.getQuantidade()
-                    < itemRequest.quantidade()) {
+            if (estoque.getDisponivel() < itemRequest.quantidade()) {
 
                 throw new RuntimeException(
                         "Estoque insuficiente"
@@ -127,6 +126,10 @@ public class PedidoService {
             );
 
             pedido.adicionarItem(itemPedido);
+            estoque.setReservado(
+                    estoque.getReservado()
+                            + itemRequest.quantidade()
+            );
 
         }
 
@@ -174,15 +177,18 @@ public class PedidoService {
             throw new RuntimeException("Pedido já cancelado");
         }
 
-        pedido.cancelarPedido();
-
         Pagamento pagamento = pedido.getPagamento();
 
-        if (pagamento != null) {
-            pagamento.setStatusPagamento(
-                    StatusPagamento.CANCELADO
+        if (pagamento != null
+                && pagamento.getStatusPagamento()
+                == StatusPagamento.CONFIRMADO) {
+
+            throw new RuntimeException(
+                    "Pedido pago não pode ser cancelado"
             );
         }
+
+        pedido.cancelarPedido();
 
         for (ItemPedido item : pedido.getItens()) {
 
@@ -197,20 +203,11 @@ public class PedidoService {
                                             "Estoque não encontrado"
                                     ));
 
-
+            estoque.setReservado(
+                    estoque.getReservado()
+                            - item.getQuantidade()
+            );
         }
-
-        pedido.getUnidade().setSaldo(
-                pedido.getUnidade()
-                        .getSaldo()
-                        .subtract(pedido.getValorTotal())
-        );
-
-        pedido.getUsuario().setPontosFidelidade(
-                pedido.getUsuario()
-                        .getPontosFidelidade()
-                        - pedido.getValorTotal().intValue()
-        );
 
         pedidoRepository.save(pedido);
     }

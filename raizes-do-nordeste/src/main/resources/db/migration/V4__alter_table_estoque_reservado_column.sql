@@ -1,0 +1,2 @@
+ALTER TABLE estoque
+    ADD COLUMN reservado INTEGER NOT NULL DEFAULT 0;
