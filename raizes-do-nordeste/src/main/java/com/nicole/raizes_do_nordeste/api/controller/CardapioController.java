@@ -1,6 +1,6 @@
 package com.nicole.raizes_do_nordeste.api.controller;
 
-import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioPrecoRequest;
+import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioEdicaoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.ItemCardapioResponse;
 import com.nicole.raizes_do_nordeste.application.service.CardapioService;
@@ -71,14 +71,14 @@ public class CardapioController {
 
     @PutMapping("/{itemId}")
     @Transactional
-    public ResponseEntity<ItemCardapioResponse> editarPreco(
+    public ResponseEntity<ItemCardapioResponse> editar(
             @PathVariable Long unidadeId,
             @PathVariable Long itemId,
-            @RequestBody @Valid ItemCardapioPrecoRequest dados
+            @RequestBody @Valid ItemCardapioEdicaoRequest dados
     ) {
 
         ItemCardapio item =
-                cardapioService.editarItem(unidadeId, itemId, dados);
+                cardapioService.editar(unidadeId, itemId, dados);
 
         return ResponseEntity.ok(new ItemCardapioResponse(item));
     }

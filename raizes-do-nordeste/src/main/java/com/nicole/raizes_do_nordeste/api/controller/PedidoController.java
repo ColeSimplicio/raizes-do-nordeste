@@ -4,10 +4,13 @@ import com.nicole.raizes_do_nordeste.application.dto.request.CriarPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.PedidoResponse;
 import com.nicole.raizes_do_nordeste.application.dto.response.PedidoStatusResponse;
 import com.nicole.raizes_do_nordeste.application.service.PedidoService;
+import com.nicole.raizes_do_nordeste.domain.enums.CanalPedido;
 import com.nicole.raizes_do_nordeste.domain.model.Pedido;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -70,6 +73,22 @@ public class PedidoController {
 
         return ResponseEntity.ok(
                 new PedidoStatusResponse(pedido)
+        );
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<PedidoResponse>> listarPedidos(
+            @RequestParam(required = false)
+            CanalPedido canalPedido,
+
+            Pageable pageable
+    ) {
+
+        return ResponseEntity.ok(
+                pedidoService.listarPedidos(
+                        canalPedido,
+                        pageable
+                )
         );
     }
 }

@@ -1,10 +1,11 @@
 package com.nicole.raizes_do_nordeste.domain.model;
 
-import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioPrecoRequest;
+import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioEdicaoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity(name = "ItemCardapio")
 @Table(
@@ -29,6 +30,16 @@ public class ItemCardapio {
     @Setter
     private boolean disponivel;
 
+    @Getter
+    @Setter
+    private boolean sazonal;
+    @Getter
+    @Setter
+    private LocalDate dataInicio;
+    @Getter
+    @Setter
+    private LocalDate dataFim;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cardapio_id")
     @Getter
@@ -48,21 +59,34 @@ public class ItemCardapio {
         this.produto = produto;
     }
 
-//    public void ativar() {
-//        if(dataInicio <= LocalDate.now() && dataFim >= LocalDate.now()){
-//            this.disponivel = true;
-//        }
-//
-//    }
+    public void editarItem(ItemCardapioEdicaoRequest dados){
 
-    public void desativar() {
-
-        this.disponivel = false;
-    }
-
-    public void editarPreco(ItemCardapioPrecoRequest dados){
         if(dados.preco() != null){
             this.preco = dados.preco();
         }
+
+        if(dados.disponivel() != null){
+            this.disponivel = dados.disponivel();
+        }
+
+        if(dados.sazonal() != null){
+
+            this.sazonal = dados.sazonal();
+
+            if(Boolean.FALSE.equals(dados.sazonal())){
+                this.dataInicio = null;
+                this.dataFim = null;
+            }
+        }
+
+        if(dados.dataInicio() != null){
+            this.dataInicio = dados.dataInicio();
+        }
+
+        if(dados.dataFim() != null){
+            this.dataFim = dados.dataFim();
+        }
     }
+
+
 }

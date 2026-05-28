@@ -1,6 +1,6 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
-import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioPrecoRequest;
+import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioEdicaoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.ItemCardapioResponse;
 import com.nicole.raizes_do_nordeste.domain.model.Cardapio;
@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class CardapioService {
@@ -52,6 +54,24 @@ public class CardapioService {
             throw new RuntimeException("Produto já existe no cardápio");
         }
 
+        if (dados.sazonal()) {
+
+            if (dados.dataInicio() == null
+                    || dados.dataFim() == null) {
+
+                throw new RuntimeException(
+                        "Produto sazonal precisa de data início e fim"
+                );
+            }
+
+            if (dados.dataInicio().isAfter(dados.dataFim())) {
+
+                throw new RuntimeException(
+                        "Data início não pode ser maior que data fim"
+                );
+            }
+        }
+
         ItemCardapio item = new ItemCardapio(dados, cardapio, produto);
 
         cardapio.adicionarItem(item);
@@ -77,17 +97,57 @@ public class CardapioService {
     }
 
     @Transactional
-    public ItemCardapio editarItem(Long unidadeId, Long itemId, ItemCardapioPrecoRequest dados){
+    public ItemCardapio editar(
+            Long unidadeId,
+            Long itemId,
+            ItemCardapioEdicaoRequest dados
+    ){
+
         Cardapio cardapio = buscarCardapioDaUnidade(unidadeId);
 
         ItemCardapio item = itemCardapioRepository.findById(itemId)
-                .orElseThrow(() -> new RuntimeException("Item não encontrado"));
+                .orElseThrow(() ->
+                        new RuntimeException("Item não encontrado"));
 
         if(!item.getCardapio().getId().equals(cardapio.getId())){
-            throw new RuntimeException("Esse item não pertence a esse cardápio");
+            throw new RuntimeException(
+                    "Esse item não pertence a esse cardápio"
+            );
         }
 
-        item.editarPreco(dados);
+        Boolean sazonal =
+                dados.sazonal() != null
+                        ? dados.sazonal()
+                        : item.isSazonal();
+
+        LocalDate dataInicio =
+                dados.dataInicio() != null
+                        ? dados.dataInicio()
+                        : item.getDataInicio();
+
+        LocalDate dataFim =
+                dados.dataFim() != null
+                        ? dados.dataFim()
+                        : item.getDataFim();
+
+        if (Boolean.TRUE.equals(sazonal)) {
+
+            if (dataInicio == null || dataFim == null) {
+
+                throw new RuntimeException(
+                        "Produto sazonal precisa de data início e fim"
+                );
+            }
+
+            if (dataInicio.isAfter(dataFim)) {
+
+                throw new RuntimeException(
+                        "Data início não pode ser maior que data fim"
+                );
+            }
+        }
+
+        item.editarItem(dados);
 
         return itemCardapioRepository.save(item);
     }

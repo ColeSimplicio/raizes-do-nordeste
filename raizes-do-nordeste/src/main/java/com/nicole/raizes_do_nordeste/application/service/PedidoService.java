@@ -2,14 +2,19 @@ package com.nicole.raizes_do_nordeste.application.service;
 
 import com.nicole.raizes_do_nordeste.application.dto.request.CriarPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemPedidoRequest;
+import com.nicole.raizes_do_nordeste.application.dto.response.PedidoResponse;
+import com.nicole.raizes_do_nordeste.domain.enums.CanalPedido;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPagamento;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPedido;
 import com.nicole.raizes_do_nordeste.domain.model.*;
 import com.nicole.raizes_do_nordeste.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Service
 public class PedidoService {
@@ -76,6 +81,19 @@ public class PedidoService {
                 throw new RuntimeException(
                         "Produto indisponível"
                 );
+            }
+
+            if (itemCardapio.isSazonal()) {
+
+                LocalDate hoje = LocalDate.now();
+
+                if (hoje.isBefore(itemCardapio.getDataInicio())
+                        || hoje.isAfter(itemCardapio.getDataFim())) {
+
+                    throw new RuntimeException(
+                            "Produto fora do período sazonal"
+                    );
+                }
             }
 
             Estoque estoque =
@@ -202,5 +220,25 @@ public class PedidoService {
         return pedidoRepository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Pedido não encontrado"));
+    }
+
+    public Page<PedidoResponse> listarPedidos(
+            CanalPedido canalPedido,
+            Pageable pageable
+    ) {
+
+        if (canalPedido != null) {
+
+            return pedidoRepository
+                    .findByCanalPedido(
+                            canalPedido,
+                            pageable
+                    )
+                    .map(PedidoResponse::new);
+        }
+
+        return pedidoRepository
+                .findAll(pageable)
+                .map(PedidoResponse::new);
     }
 }
