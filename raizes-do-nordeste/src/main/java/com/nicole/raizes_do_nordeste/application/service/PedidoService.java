@@ -1,5 +1,7 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
+import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException;
+import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
 import com.nicole.raizes_do_nordeste.application.dto.request.CriarPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.PedidoResponse;
@@ -45,11 +47,11 @@ public class PedidoService {
 
         Usuario usuario = usuarioRepository.findById(dados.usuarioId())
                 .orElseThrow(() ->
-                        new RuntimeException("Usuário não encontrado"));
+                        new RecursoNaoEncontradoException("Usuário não encontrado"));
 
         Unidade unidade = unidadeRepository.findById(dados.unidadeId())
                 .orElseThrow(() ->
-                        new RuntimeException("Unidade não encontrada"));
+                        new RecursoNaoEncontradoException("Unidade não encontrada"));
 
         Pedido pedido = new Pedido(
                 usuario,
@@ -63,7 +65,7 @@ public class PedidoService {
             Produto produto = produtoRepository
                     .findById(itemRequest.produtoId())
                     .orElseThrow(() ->
-                            new RuntimeException("Produto não encontrado"));
+                            new RecursoNaoEncontradoException("Produto não encontrado"));
 
 
             ItemCardapio itemCardapio =
@@ -73,12 +75,12 @@ public class PedidoService {
                                     produto.getId()
                             )
                             .orElseThrow(() ->
-                                    new RuntimeException(
+                                    new RegraNegocioException(
                                             "Produto não disponível nessa unidade"
                                     ));
 
             if (!itemCardapio.isDisponivel()) {
-                throw new RuntimeException(
+                throw new RegraNegocioException(
                         "Produto indisponível"
                 );
             }
@@ -90,7 +92,7 @@ public class PedidoService {
                 if (hoje.isBefore(itemCardapio.getDataInicio())
                         || hoje.isAfter(itemCardapio.getDataFim())) {
 
-                    throw new RuntimeException(
+                    throw new RegraNegocioException(
                             "Produto fora do período sazonal"
                     );
                 }
@@ -103,13 +105,13 @@ public class PedidoService {
                                     produto.getId()
                             )
                             .orElseThrow(() ->
-                                    new RuntimeException(
+                                    new RecursoNaoEncontradoException(
                                             "Produto sem estoque"
                                     ));
 
             if (estoque.getDisponivel() < itemRequest.quantidade()) {
 
-                throw new RuntimeException(
+                throw new RegraNegocioException(
                         "Estoque insuficiente"
                 );
             }
@@ -171,10 +173,10 @@ public class PedidoService {
 
         Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Pedido não encontrado"));
+                        new RecursoNaoEncontradoException("Pedido não encontrado"));
 
         if (pedido.getStatusPedido() == StatusPedido.CANCELADO) {
-            throw new RuntimeException("Pedido já cancelado");
+            throw new RegraNegocioException("Pedido já cancelado");
         }
 
         Pagamento pagamento = pedido.getPagamento();
@@ -183,7 +185,7 @@ public class PedidoService {
                 && pagamento.getStatusPagamento()
                 == StatusPagamento.CONFIRMADO) {
 
-            throw new RuntimeException(
+            throw new RegraNegocioException(
                     "Pedido pago não pode ser cancelado"
             );
         }
@@ -199,7 +201,7 @@ public class PedidoService {
                                     item.getProduto().getId()
                             )
                             .orElseThrow(() ->
-                                    new RuntimeException(
+                                    new RecursoNaoEncontradoException(
                                             "Estoque não encontrado"
                                     ));
 
@@ -216,7 +218,7 @@ public class PedidoService {
 
         return pedidoRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Pedido não encontrado"));
+                        new RecursoNaoEncontradoException("Pedido não encontrado"));
     }
 
     public Page<PedidoResponse> listarPedidos(

@@ -7,19 +7,19 @@ import java.util.List;
 
 public record CriarPedidoRequest(
 
-        @NotNull
+        @NotNull(message = "Usuário é obrigatório")
         Long usuarioId,
 
-        @NotNull
+        @NotNull(message = "Unidade é obrigatória")
         Long unidadeId,
 
-        @NotNull
+        @NotNull(message = "Canal do pedido é obrigatório")
         CanalPedido canalPedido,
 
-        @NotNull
+        @NotNull(message = "Item é obrigatório")
         List<ItemPedidoRequest> itens,
 
-        @NotNull
+        @NotNull(message = "Método de pagamento é obrigatório")
         MetodoPagamento metodoPagamento
 
 ) {

@@ -1,5 +1,7 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
+import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException;
+import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
 import com.nicole.raizes_do_nordeste.application.dto.request.EstoqueRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.EstoqueResponse;
 import com.nicole.raizes_do_nordeste.domain.model.Estoque;
@@ -8,6 +10,7 @@ import com.nicole.raizes_do_nordeste.domain.model.Unidade;
 import com.nicole.raizes_do_nordeste.repository.EstoqueRepository;
 import com.nicole.raizes_do_nordeste.repository.ProdutoRepository;
 import com.nicole.raizes_do_nordeste.repository.UnidadeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +28,7 @@ public class EstoqueService {
     @Autowired
     private EstoqueRepository estoqueRepository;
 
+    @Transactional
     public Estoque adicionarProdutoNoEstoque(
             Long idUnidade,
             Long idProduto,
@@ -33,11 +37,11 @@ public class EstoqueService {
 
         Unidade unidade = unidadeRepository.findById(idUnidade)
                 .orElseThrow(() ->
-                        new RuntimeException("Unidade não encontrada"));
+                        new RecursoNaoEncontradoException("Unidade não encontrada"));
 
         Produto produto = produtoRepository.findById(idProduto)
                 .orElseThrow(() ->
-                        new RuntimeException("Produto não encontrado"));
+                        new RecursoNaoEncontradoException("Produto não encontrado"));
 
         boolean produtoJaExiste =
                 estoqueRepository
@@ -45,7 +49,7 @@ public class EstoqueService {
                         .isPresent();
 
         if (produtoJaExiste) {
-            throw new RuntimeException(
+            throw new RegraNegocioException(
                     "Produto já existe no estoque"
             );
         }
@@ -55,7 +59,7 @@ public class EstoqueService {
 
         return estoqueRepository.save(estoque);
     }
-
+    @Transactional
     public Estoque atualizarQuantidade(
             Long idUnidade,
             Long idProduto,
@@ -66,16 +70,20 @@ public class EstoqueService {
                 buscarEstoque(idUnidade, idProduto);
 
         if (novaQuantidade < 0) {
-            throw new RuntimeException(
+            throw new RegraNegocioException(
                     "Quantidade não pode ser negativa"
             );
         }
-
+        if (novaQuantidade < estoque.getReservado()) {
+            throw new RegraNegocioException(
+                    "Quantidade não pode ser menor que o estoque reservado"
+            );
+        }
         estoque.setQuantidade(novaQuantidade);
 
         return estoqueRepository.save(estoque);
     }
-
+    @Transactional
     public void removerProdutoDoEstoque(
             Long idUnidade,
             Long idProduto
@@ -84,6 +92,11 @@ public class EstoqueService {
         Estoque estoque =
                 buscarEstoque(idUnidade, idProduto);
 
+        if (estoque.getReservado() > 0) {
+            throw new RegraNegocioException(
+                    "Não é possível remover produto com estoque reservado"
+            );
+        }
         estoqueRepository.delete(estoque);
     }
 
@@ -94,7 +107,7 @@ public class EstoqueService {
 
         Unidade unidade = unidadeRepository.findById(idUnidade)
                 .orElseThrow(() ->
-                        new RuntimeException("Unidade não encontrada"));
+                        new RecursoNaoEncontradoException("Unidade não encontrada"));
 
         return estoqueRepository
                 .findByUnidadeId(unidade.getId(), pageable)
@@ -112,6 +125,6 @@ public class EstoqueService {
                         idProduto
                 )
                 .orElseThrow(() ->
-                        new RuntimeException("Estoque não encontrado"));
+                        new RecursoNaoEncontradoException("Estoque não encontrado"));
     }
 }

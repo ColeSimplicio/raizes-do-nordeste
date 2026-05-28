@@ -4,6 +4,7 @@ import com.nicole.raizes_do_nordeste.application.dto.request.CadastroRequest;
 import com.nicole.raizes_do_nordeste.domain.exception.EmailDuplicadoException;
 import com.nicole.raizes_do_nordeste.domain.model.Usuario;
 import com.nicole.raizes_do_nordeste.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
+    @Transactional
     public Usuario criarUsuario(CadastroRequest dados){
 
         if(usuarioRepository.existsByEmail(dados.email())){

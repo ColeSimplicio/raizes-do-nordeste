@@ -1,5 +1,7 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
+import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException;
+import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioEdicaoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemCardapioRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.ItemCardapioResponse;
@@ -32,9 +34,9 @@ public class CardapioService {
 
     private Cardapio buscarCardapioDaUnidade(Long unidadeId){
         Unidade unidade = unidadeRepository.findById(unidadeId)
-                .orElseThrow(() -> new RuntimeException("Unidade não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Unidade não encontrada"));
         if(unidade.getCardapio() == null){
-            throw new RuntimeException("Cardápio não encontrado");
+            throw new RecursoNaoEncontradoException("Cardápio não encontrado");
         }
         return unidade.getCardapio();
     }
@@ -44,14 +46,14 @@ public class CardapioService {
         Cardapio cardapio = buscarCardapioDaUnidade(unidadeId);
 
         Produto produto = produtoRepository.findById(produtoId)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado"));
 
         boolean produtoJaExiste = cardapio.getItens()
                 .stream()
                 .anyMatch(item -> item.getProduto().getId().equals(produtoId));
 
         if(produtoJaExiste){
-            throw new RuntimeException("Produto já existe no cardápio");
+            throw new RegraNegocioException("Produto já existe no cardápio");
         }
 
         if (dados.sazonal()) {
@@ -59,14 +61,14 @@ public class CardapioService {
             if (dados.dataInicio() == null
                     || dados.dataFim() == null) {
 
-                throw new RuntimeException(
+                throw new RegraNegocioException(
                         "Produto sazonal precisa de data início e fim"
                 );
             }
 
             if (dados.dataInicio().isAfter(dados.dataFim())) {
 
-                throw new RuntimeException(
+                throw new RegraNegocioException(
                         "Data início não pode ser maior que data fim"
                 );
             }
@@ -85,10 +87,10 @@ public class CardapioService {
         Cardapio cardapio = buscarCardapioDaUnidade(unidadeId);
 
         ItemCardapio item = itemCardapioRepository.findById(itemId)
-                .orElseThrow(() -> new RuntimeException("Item não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Item não encontrado"));
 
         if(!item.getCardapio().getId().equals(cardapio.getId())){
-            throw new RuntimeException("Esse item não pertence a esse cardápio");
+            throw new RegraNegocioException("Esse item não pertence a esse cardápio");
         }
 
         cardapio.removerItem(item);
@@ -107,10 +109,10 @@ public class CardapioService {
 
         ItemCardapio item = itemCardapioRepository.findById(itemId)
                 .orElseThrow(() ->
-                        new RuntimeException("Item não encontrado"));
+                        new RecursoNaoEncontradoException("Item não encontrado"));
 
         if(!item.getCardapio().getId().equals(cardapio.getId())){
-            throw new RuntimeException(
+            throw new RegraNegocioException(
                     "Esse item não pertence a esse cardápio"
             );
         }
@@ -134,14 +136,14 @@ public class CardapioService {
 
             if (dataInicio == null || dataFim == null) {
 
-                throw new RuntimeException(
+                throw new RegraNegocioException(
                         "Produto sazonal precisa de data início e fim"
                 );
             }
 
             if (dataInicio.isAfter(dataFim)) {
 
-                throw new RuntimeException(
+                throw new RegraNegocioException(
                         "Data início não pode ser maior que data fim"
                 );
             }
@@ -158,7 +160,7 @@ public class CardapioService {
     ){
 
         Unidade unidade = unidadeRepository.findById(unidadeId)
-                .orElseThrow(() -> new RuntimeException("Unidade não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Unidade não encontrada"));
 
         Cardapio cardapio = unidade.getCardapio();
 

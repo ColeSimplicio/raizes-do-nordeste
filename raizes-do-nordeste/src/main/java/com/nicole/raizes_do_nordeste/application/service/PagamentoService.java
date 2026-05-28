@@ -1,5 +1,7 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
+import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException;
+import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
 import com.nicole.raizes_do_nordeste.application.dto.request.PagamentoMockRequest;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPagamento;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPedido;
@@ -31,12 +33,12 @@ public class PagamentoService {
 
         Pedido pedido = pedidoRepository.findById(pedidoId)
                 .orElseThrow(() ->
-                        new RuntimeException("Pedido não encontrado"));
+                        new RecursoNaoEncontradoException("Pedido não encontrado"));
 
         Pagamento pagamento = pedido.getPagamento();
 
         if (pagamento == null) {
-            throw new RuntimeException(
+            throw new RecursoNaoEncontradoException(
                     "Pagamento não encontrado"
             );
         }
@@ -44,7 +46,7 @@ public class PagamentoService {
         if (pagamento.getStatusPagamento()
                 != StatusPagamento.PENDENTE) {
 
-            throw new RuntimeException(
+            throw new RegraNegocioException(
                     "Pagamento já processado"
             );
         }
@@ -66,7 +68,7 @@ public class PagamentoService {
                                         item.getProduto().getId()
                                 )
                                 .orElseThrow(() ->
-                                        new RuntimeException(
+                                        new RecursoNaoEncontradoException(
                                                 "Estoque não encontrado"
                                         ));
 
@@ -108,7 +110,7 @@ public class PagamentoService {
                                         item.getProduto().getId()
                                 )
                                 .orElseThrow(() ->
-                                        new RuntimeException(
+                                        new RecursoNaoEncontradoException(
                                                 "Estoque não encontrado"
                                         ));
 
