@@ -135,11 +135,49 @@ public class PedidoService {
 
         }
 
-        BigDecimal total = pedido.calcularTotal();
+        BigDecimal valorOriginal = pedido.calcularTotal();
 
-        pedido.setValorPedido(total);
+        BigDecimal total = valorOriginal;
+
+        BigDecimal descontoPedido = BigDecimal.ZERO;
+
+        if (dados.pontosUtilizados() != null
+                && dados.pontosUtilizados() > 0) {
+
+            Integer pontos = dados.pontosUtilizados();
+
+            if (pontos > usuario.getPontosFidelidade()) {
+                throw new RegraNegocioException(
+                        "Pontos insuficientes"
+                );
+            }
+
+            BigDecimal descontoPontos =
+                    BigDecimal.valueOf(pontos)
+                            .multiply(new BigDecimal("0.10"));
+
+            BigDecimal limiteDesconto =
+                    valorOriginal.multiply(new BigDecimal("0.50"));
+
+            if (descontoPontos.compareTo(limiteDesconto) > 0) {
+
+                throw new RegraNegocioException(
+                        "O desconto não pode ultrapassar 50% do pedido"
+                );
+            }
+
+            total = total.subtract(descontoPontos);
+
+            descontoPedido = descontoPontos;
+
+            usuario.resgatarPontos(pontos);
+        }
+
+        pedido.setValorPedido(valorOriginal);
+
+        pedido.setDescontoPedido(descontoPedido);
+
         pedido.setValorTotal(total);
-        pedido.setDescontoPedido(BigDecimal.ZERO);
 
         pedido.setStatusPedido(
                 StatusPedido.COZINHA

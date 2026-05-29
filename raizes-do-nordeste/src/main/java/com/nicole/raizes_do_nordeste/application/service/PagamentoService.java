@@ -89,10 +89,8 @@ public class PagamentoService {
                             .add(pedido.getValorTotal())
             );
 
-            pedido.getUsuario().setPontosFidelidade(
-                    pedido.getUsuario()
-                            .getPontosFidelidade()
-                            + pedido.getValorTotal().intValue()
+            pedido.getUsuario().acumularPontos(
+                    pedido.getValorTotal().intValue()
             );
 
         } else {

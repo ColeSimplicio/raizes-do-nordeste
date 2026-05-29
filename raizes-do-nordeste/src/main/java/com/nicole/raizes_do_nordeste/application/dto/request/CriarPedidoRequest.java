@@ -20,7 +20,8 @@ public record CriarPedidoRequest(
         List<ItemPedidoRequest> itens,
 
         @NotNull(message = "Método de pagamento é obrigatório")
-        MetodoPagamento metodoPagamento
+        MetodoPagamento metodoPagamento,
+        Integer pontosUtilizados
 
 ) {
 }

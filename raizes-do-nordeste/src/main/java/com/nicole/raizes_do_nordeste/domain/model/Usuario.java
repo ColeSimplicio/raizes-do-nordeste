@@ -1,9 +1,11 @@
 package com.nicole.raizes_do_nordeste.domain.model;
+import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
 import com.nicole.raizes_do_nordeste.application.dto.request.CadastroRequest;
 import com.nicole.raizes_do_nordeste.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,6 @@ public class Usuario {
     private String email;
     @Setter
     private String senha;
-    @Setter
     private Integer pontosFidelidade;
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -41,10 +42,22 @@ public class Usuario {
         this.consentimentoLGPD = dados.consentimento();
     }
 
-    public void acumularPontos(){
-
+    public void acumularPontos(Integer pontos){
+        if(!Boolean.TRUE.equals(this.consentimentoLGPD)){
+            return;
+        }
+        this.pontosFidelidade += pontos;
     }
 
-    public void resgatarPontos(){}
+    public void resgatarPontos(Integer pontos){
+
+        if(pontos > this.pontosFidelidade){
+            throw new RegraNegocioException(
+                    "Pontos insuficientes"
+            );
+        }
+
+        this.pontosFidelidade -= pontos;
+    }
 
 }

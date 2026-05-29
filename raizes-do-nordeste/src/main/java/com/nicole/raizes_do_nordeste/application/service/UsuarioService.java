@@ -1,7 +1,7 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
+import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
 import com.nicole.raizes_do_nordeste.application.dto.request.CadastroRequest;
-import com.nicole.raizes_do_nordeste.domain.exception.EmailDuplicadoException;
 import com.nicole.raizes_do_nordeste.domain.model.Usuario;
 import com.nicole.raizes_do_nordeste.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -21,7 +21,7 @@ public class UsuarioService {
     public Usuario criarUsuario(CadastroRequest dados){
 
         if(usuarioRepository.existsByEmail(dados.email())){
-            throw new EmailDuplicadoException();
+            throw new RegraNegocioException("Email já cadastrado.");
         }
 
         Usuario usuario = new Usuario(dados);
