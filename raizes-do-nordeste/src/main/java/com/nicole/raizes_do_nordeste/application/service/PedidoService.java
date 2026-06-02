@@ -6,6 +6,7 @@ import com.nicole.raizes_do_nordeste.application.dto.request.CriarPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.PedidoResponse;
 import com.nicole.raizes_do_nordeste.domain.enums.CanalPedido;
+import com.nicole.raizes_do_nordeste.domain.enums.Role;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPagamento;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPedido;
 import com.nicole.raizes_do_nordeste.domain.model.*;
@@ -42,12 +43,18 @@ public class PedidoService {
     @Autowired
     private PagamentoRepository pagamentoRepository;
 
-    @Transactional
-    public Pedido criarPedido(CriarPedidoRequest dados) {
+    @Autowired
+    private AuditoriaService auditoriaService;
 
-        Usuario usuario = usuarioRepository.findById(dados.usuarioId())
+    @Transactional
+    public Pedido criarPedido(CriarPedidoRequest dados, String emailUsuario) {
+
+        Usuario usuario = usuarioRepository
+                .findByEmail(emailUsuario)
                 .orElseThrow(() ->
-                        new RecursoNaoEncontradoException("Usuário não encontrado"));
+                        new RecursoNaoEncontradoException(
+                                "Usuário não encontrado"
+                        ));
 
         Unidade unidade = unidadeRepository.findById(dados.unidadeId())
                 .orElseThrow(() ->
@@ -171,6 +178,7 @@ public class PedidoService {
             descontoPedido = descontoPontos;
 
             usuario.resgatarPontos(pontos);
+            usuarioRepository.save(usuario);
         }
 
         pedido.setValorPedido(valorOriginal);
@@ -199,6 +207,11 @@ public class PedidoService {
 
         pedidoRepository.save(pedido);
 
+        auditoriaService.registrar(
+                "CRIAR_PEDIDO",
+                "Pedido criado para usuário "
+                        + usuario.getId(), usuario
+        );
         pagamento.setPedido(pedido);
 
         pagamentoRepository.save(pagamento);
@@ -207,11 +220,12 @@ public class PedidoService {
     }
 
     @Transactional
-    public void cancelarPedido(Long id){
+    public void cancelarPedido(Long id,  String emailUsuario){
 
-        Pedido pedido = pedidoRepository.findById(id)
-                .orElseThrow(() ->
-                        new RecursoNaoEncontradoException("Pedido não encontrado"));
+        Pedido pedido = buscarPedidoDoUsuario(
+                id,
+                emailUsuario
+        );
 
         if (pedido.getStatusPedido() == StatusPedido.CANCELADO) {
             throw new RegraNegocioException("Pedido já cancelado");
@@ -229,6 +243,11 @@ public class PedidoService {
         }
 
         pedido.cancelarPedido();
+
+        auditoriaService.registrar(
+                "CANCELAR_PEDIDO",
+                "Pedido cancelado: " + pedido.getId(), pedido.getUsuario()
+        );
 
         for (ItemPedido item : pedido.getItens()) {
 
@@ -252,11 +271,13 @@ public class PedidoService {
         pedidoRepository.save(pedido);
     }
 
-    public Pedido buscarPedido(Long id){
-
-        return pedidoRepository.findById(id)
-                .orElseThrow(() ->
-                        new RecursoNaoEncontradoException("Pedido não encontrado"));
+    public Pedido buscarPedido(
+            Long id,
+            String emailUsuario) {
+        return buscarPedidoDoUsuario(
+                id,
+                emailUsuario
+        );
     }
 
     public Page<PedidoResponse> listarPedidos(
@@ -277,5 +298,36 @@ public class PedidoService {
         return pedidoRepository
                 .findAll(pageable)
                 .map(PedidoResponse::new);
+    }
+
+    private Pedido buscarPedidoDoUsuario(Long pedidoId, String emailUsuario) {
+
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() ->
+                        new RecursoNaoEncontradoException(
+                                "Pedido não encontrado"
+                        ));
+
+        Usuario usuario = usuarioRepository
+                .findByEmail(emailUsuario)
+                .orElseThrow(() ->
+                        new RecursoNaoEncontradoException(
+                                "Usuário não encontrado"
+                        ));
+
+        boolean isAdmin =
+                usuario.getRole() == Role.ADMIN;
+
+        boolean isDonoDoPedido =
+                pedido.getUsuario().getId()
+                        .equals(usuario.getId());
+
+        if (!isAdmin && !isDonoDoPedido) {
+            throw new RegraNegocioException(
+                    "Você não pode acessar este pedido"
+            );
+        }
+
+        return pedido;
     }
 }

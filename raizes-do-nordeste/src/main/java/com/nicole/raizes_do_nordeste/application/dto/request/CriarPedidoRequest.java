@@ -7,9 +7,6 @@ import java.util.List;
 
 public record CriarPedidoRequest(
 
-        @NotNull(message = "Usuário é obrigatório")
-        Long usuarioId,
-
         @NotNull(message = "Unidade é obrigatória")
         Long unidadeId,
 

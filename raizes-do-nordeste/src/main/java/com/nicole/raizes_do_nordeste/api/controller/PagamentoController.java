@@ -1,5 +1,6 @@
 package com.nicole.raizes_do_nordeste.api.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.nicole.raizes_do_nordeste.application.dto.request.PagamentoMockRequest;
@@ -21,6 +22,7 @@ public class PagamentoController {
 
     @PostMapping("/pedido/{pedidoId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PagamentoResponse> processarPagamento(
             @PathVariable Long pedidoId,
             @RequestBody @Valid PagamentoMockRequest dados

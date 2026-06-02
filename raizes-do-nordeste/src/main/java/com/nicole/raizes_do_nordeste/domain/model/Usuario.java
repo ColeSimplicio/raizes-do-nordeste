@@ -33,6 +33,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Auditoria> auditorias = new ArrayList<>();
+
     public Usuario(CadastroRequest dados) {
         this.nome = dados.nome();
         this.email = dados.email();

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,6 +21,7 @@ public class UnidadeController {
     UnidadeService service;
     @PostMapping
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UnidadeResponse> criarUnidade(@RequestBody @Valid UnidadeRequest dados, UriComponentsBuilder uriBuilder){
         Unidade unidade = service.criarUnidade(dados);
 
@@ -32,6 +34,7 @@ public class UnidadeController {
     }
     
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public ResponseEntity<Void> removerUnidade(@PathVariable Long id){
         service.removerUnidade(id);
@@ -40,6 +43,7 @@ public class UnidadeController {
 
     @PutMapping("/{id}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UnidadeResponse> editarUnidade(@PathVariable Long id, @RequestBody @Valid UnidadeRequest dados){
         Unidade unidade = service.editarUnidade(id, dados);
 
@@ -47,6 +51,7 @@ public class UnidadeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<UnidadeResponse>> listarUnidades(
             Pageable pageable
     ){

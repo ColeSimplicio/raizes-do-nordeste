@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -24,12 +26,18 @@ public class PedidoController {
 
     @PostMapping
     @Transactional
+    @PreAuthorize("hasRole('CLIENTE')")
     public ResponseEntity<PedidoResponse> criarPedido(
             @RequestBody @Valid CriarPedidoRequest dados,
-            UriComponentsBuilder uriBuilder
+            UriComponentsBuilder uriBuilder,
+            Authentication authentication
     ) {
 
-        Pedido pedido = pedidoService.criarPedido(dados);
+        Pedido pedido =
+                pedidoService.criarPedido(
+                        dados,
+                        authentication.getName()
+                );
 
         var uri = uriBuilder
                 .path("/pedidos/{id}")
@@ -40,36 +48,50 @@ public class PedidoController {
                 .created(uri)
                 .body(new PedidoResponse(pedido));
     }
-
     @PutMapping("/{id}/cancelamento")
-    @Transactional
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     public ResponseEntity<Void> cancelarPedido(
-            @PathVariable Long id
+            @PathVariable Long id,
+            Authentication authentication
     ) {
 
-        pedidoService.cancelarPedido(id);
+        pedidoService.cancelarPedido(
+                id,
+                authentication.getName()
+        );
 
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     public ResponseEntity<PedidoResponse> buscarPedido(
-            @PathVariable Long id
+            @PathVariable Long id,
+            Authentication authentication
     ) {
 
-        Pedido pedido = pedidoService.buscarPedido(id);
+        Pedido pedido =
+                pedidoService.buscarPedido(
+                        id,
+                        authentication.getName()
+                );
 
         return ResponseEntity.ok(
                 new PedidoResponse(pedido)
         );
     }
-
     @GetMapping("/{id}/status")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     public ResponseEntity<PedidoStatusResponse> consultarStatus(
-            @PathVariable Long id
+            @PathVariable Long id,
+            Authentication authentication
     ) {
 
-        Pedido pedido = pedidoService.buscarPedido(id);
+        Pedido pedido =
+                pedidoService.buscarPedido(
+                        id,
+                        authentication.getName()
+                );
 
         return ResponseEntity.ok(
                 new PedidoStatusResponse(pedido)
@@ -77,6 +99,7 @@ public class PedidoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<PedidoResponse>> listarPedidos(
             @RequestParam(required = false)
             CanalPedido canalPedido,

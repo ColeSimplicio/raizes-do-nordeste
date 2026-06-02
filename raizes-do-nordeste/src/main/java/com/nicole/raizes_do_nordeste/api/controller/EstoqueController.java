@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -22,6 +23,7 @@ public class EstoqueController {
 
     @PostMapping("/unidades/{unidadeId}/produtos/{produtoId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<EstoqueResponse> adicionarProduto(
             @PathVariable Long unidadeId,
             @PathVariable Long produtoId,
@@ -47,6 +49,7 @@ public class EstoqueController {
 
     @PutMapping("/unidades/{unidadeId}/produtos/{produtoId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<EstoqueResponse> atualizarQuantidade(
             @PathVariable Long unidadeId,
             @PathVariable Long produtoId,
@@ -66,6 +69,7 @@ public class EstoqueController {
 
     @DeleteMapping("/unidades/{unidadeId}/produtos/{produtoId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> removerProduto(
             @PathVariable Long unidadeId,
             @PathVariable Long produtoId
@@ -80,6 +84,7 @@ public class EstoqueController {
     }
 
     @GetMapping("/unidades/{unidadeId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<EstoqueResponse>> listar(
             @PathVariable Long unidadeId,
             Pageable pageable

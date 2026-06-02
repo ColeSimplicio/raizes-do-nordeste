@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -25,6 +26,7 @@ public class CardapioController {
 
     @PostMapping("/produtos/{produtoId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ItemCardapioResponse> adicionarItem(
             @PathVariable Long unidadeId,
             @PathVariable Long produtoId,
@@ -41,7 +43,7 @@ public class CardapioController {
 
         return ResponseEntity.created(uri).body(new ItemCardapioResponse(item));
     }
-
+    @PreAuthorize("hasRole('CLIENTE')")
     @GetMapping
     public ResponseEntity<Page<ItemCardapioResponse>> listarItensCardapio(
             @PathVariable Long unidadeId,
@@ -59,6 +61,7 @@ public class CardapioController {
 
     @DeleteMapping("/{itemId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> removerItem(
             @PathVariable Long unidadeId,
             @PathVariable Long itemId
@@ -71,6 +74,7 @@ public class CardapioController {
 
     @PutMapping("/{itemId}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ItemCardapioResponse> editar(
             @PathVariable Long unidadeId,
             @PathVariable Long itemId,

@@ -2,7 +2,10 @@ package com.nicole.raizes_do_nordeste.api.controller;
 
 
 import com.nicole.raizes_do_nordeste.application.dto.request.CadastroRequest;
+import com.nicole.raizes_do_nordeste.application.dto.request.LoginRequest;
+import com.nicole.raizes_do_nordeste.application.dto.response.LoginResponse;
 import com.nicole.raizes_do_nordeste.application.dto.response.UsuarioResponse;
+import com.nicole.raizes_do_nordeste.application.service.AutenticacaoService;
 import com.nicole.raizes_do_nordeste.application.service.UsuarioService;
 import com.nicole.raizes_do_nordeste.domain.model.Usuario;
 import jakarta.transaction.Transactional;
@@ -38,6 +41,14 @@ public class AutenticacaoController {
                 .toUri();
 
         return ResponseEntity.created(uri).body(new UsuarioResponse(usuario));
+    }
+
+    @Autowired
+    private AutenticacaoService autenticacaoService;
+
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginRequest request) {
+        return autenticacaoService.login(request);
     }
 }
 

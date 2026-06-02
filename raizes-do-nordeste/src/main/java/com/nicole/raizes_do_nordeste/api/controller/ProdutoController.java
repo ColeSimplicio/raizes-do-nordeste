@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
@@ -22,6 +23,7 @@ public class ProdutoController {
 
     @PostMapping
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProdutoResponse> adicionarProduto(@RequestBody @Valid ProdutoRequest dados, UriComponentsBuilder uriBuilder){
         Produto produto = produtoService.criarProduto(dados);
 
@@ -35,6 +37,7 @@ public class ProdutoController {
 
     @PutMapping("/{id}")
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProdutoResponse> editarProduto(
             @PathVariable Long id,
             @RequestBody @Valid ProdutoRequest dados
@@ -45,6 +48,7 @@ public class ProdutoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity listarProdutos(Pageable pageable) {
         Page<ProdutoResponse> produtos =
                 produtoService.listarProdutos(pageable);
@@ -54,6 +58,7 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public ResponseEntity<Void> deletarProduto(@PathVariable Long id){
         produtoService.removerProduto(id);
