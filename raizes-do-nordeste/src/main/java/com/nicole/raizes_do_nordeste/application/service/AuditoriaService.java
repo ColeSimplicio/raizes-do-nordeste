@@ -2,11 +2,9 @@ package com.nicole.raizes_do_nordeste.application.service;
 
 import com.nicole.raizes_do_nordeste.domain.model.Auditoria;
 import com.nicole.raizes_do_nordeste.domain.model.Usuario;
-import com.nicole.raizes_do_nordeste.repository.AuditoriaRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.AuditoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 public class AuditoriaService {

@@ -1,4 +1,4 @@
-package com.nicole.raizes_do_nordeste.repository;
+package com.nicole.raizes_do_nordeste.infrastructure.repository;
 
 import com.nicole.raizes_do_nordeste.domain.model.Pagamento;
 import org.springframework.data.jpa.repository.JpaRepository;

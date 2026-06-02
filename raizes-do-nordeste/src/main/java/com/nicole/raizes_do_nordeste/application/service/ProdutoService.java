@@ -5,14 +5,12 @@ import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException
 import com.nicole.raizes_do_nordeste.application.dto.request.ProdutoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.ProdutoResponse;
 import com.nicole.raizes_do_nordeste.domain.model.Produto;
-import com.nicole.raizes_do_nordeste.repository.ProdutoRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ProdutoService {

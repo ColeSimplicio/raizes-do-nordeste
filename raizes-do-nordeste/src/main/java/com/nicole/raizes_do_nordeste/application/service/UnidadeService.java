@@ -4,15 +4,12 @@ import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException
 import com.nicole.raizes_do_nordeste.application.dto.request.UnidadeRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.UnidadeResponse;
 import com.nicole.raizes_do_nordeste.domain.model.Unidade;
-import com.nicole.raizes_do_nordeste.repository.CardapioRepository;
-import com.nicole.raizes_do_nordeste.repository.UnidadeRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.UnidadeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UnidadeService {

@@ -10,7 +10,7 @@ import com.nicole.raizes_do_nordeste.domain.enums.Role;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPagamento;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPedido;
 import com.nicole.raizes_do_nordeste.domain.model.*;
-import com.nicole.raizes_do_nordeste.repository.*;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

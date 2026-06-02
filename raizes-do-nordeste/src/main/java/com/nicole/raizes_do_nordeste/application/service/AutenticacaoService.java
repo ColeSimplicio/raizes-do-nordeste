@@ -6,7 +6,7 @@ import com.nicole.raizes_do_nordeste.application.dto.request.LoginRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.LoginResponse;
 import com.nicole.raizes_do_nordeste.domain.model.Usuario;
 import com.nicole.raizes_do_nordeste.infrastructure.security.JwtService;
-import com.nicole.raizes_do_nordeste.repository.UsuarioRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -6,9 +6,9 @@ import com.nicole.raizes_do_nordeste.application.dto.request.PagamentoMockReques
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPagamento;
 import com.nicole.raizes_do_nordeste.domain.enums.StatusPedido;
 import com.nicole.raizes_do_nordeste.domain.model.*;
-import com.nicole.raizes_do_nordeste.repository.EstoqueRepository;
-import com.nicole.raizes_do_nordeste.repository.PagamentoRepository;
-import com.nicole.raizes_do_nordeste.repository.PedidoRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.EstoqueRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.PagamentoRepository;
+import com.nicole.raizes_do_nordeste.infrastructure.repository.PedidoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
