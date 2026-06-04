@@ -43,6 +43,16 @@ public class PagamentoService {
             );
         }
 
+        if (pedido.getStatusPedido() == StatusPedido.CANCELADO) {
+            throw new RegraNegocioException(
+                    "Não é possível processar pagamento de um pedido cancelado"
+            );
+        }
+
+        if (pedido.getStatusPedido() == StatusPedido.PRONTO) {
+            throw new RegraNegocioException("Pedido já finalizado não pode ser pago novamente");
+        }
+
         if (pagamento.getStatusPagamento()
                 != StatusPagamento.PENDENTE) {
 
