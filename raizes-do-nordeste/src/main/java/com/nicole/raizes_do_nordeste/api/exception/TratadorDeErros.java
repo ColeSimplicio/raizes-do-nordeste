@@ -98,4 +98,21 @@ public class TratadorDeErros {
                 .badRequest()
                 .body(erro);
     }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErroResponse> tratarUnauthorized(
+            UnauthorizedException ex,
+            HttpServletRequest request
+    ) {
+
+        ErroResponse erro = new ErroResponse(
+                LocalDateTime.now(),
+                HttpStatus.UNAUTHORIZED.value(),
+                "Não autorizado",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(erro);
+    }
 }

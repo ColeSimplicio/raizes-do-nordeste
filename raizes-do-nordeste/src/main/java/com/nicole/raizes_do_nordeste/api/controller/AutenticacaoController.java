@@ -25,9 +25,9 @@ public class AutenticacaoController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
+    @PostMapping("/register")
     @Transactional
-    @RequestMapping("/register")
+    @RequestMapping
     public ResponseEntity cadastro(
             @RequestBody @Valid CadastroRequest dados,
             UriComponentsBuilder uriBuilder
@@ -51,8 +51,6 @@ public class AutenticacaoController {
         return autenticacaoService.login(request);
     }
 }
-
-    // Login, Logout e Refresh
 
 
 
