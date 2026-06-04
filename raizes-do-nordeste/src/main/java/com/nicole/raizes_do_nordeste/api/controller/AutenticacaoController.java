@@ -25,9 +25,9 @@ public class AutenticacaoController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/register")
+    @PostMapping
     @Transactional
-    @RequestMapping
+    @RequestMapping("/register")
     public ResponseEntity cadastro(
             @RequestBody @Valid CadastroRequest dados,
             UriComponentsBuilder uriBuilder

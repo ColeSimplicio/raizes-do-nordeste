@@ -1,7 +1,9 @@
 package com.nicole.raizes_do_nordeste.application.service;
 
+import com.nicole.raizes_do_nordeste.api.exception.ForbiddenException;
 import com.nicole.raizes_do_nordeste.api.exception.RecursoNaoEncontradoException;
 import com.nicole.raizes_do_nordeste.api.exception.RegraNegocioException;
+import com.nicole.raizes_do_nordeste.api.exception.UnauthorizedException;
 import com.nicole.raizes_do_nordeste.application.dto.request.CriarPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.request.ItemPedidoRequest;
 import com.nicole.raizes_do_nordeste.application.dto.response.PedidoResponse;
@@ -243,6 +245,7 @@ public class PedidoService {
         }
 
         pedido.cancelarPedido();
+        pagamento.setStatusPagamento(StatusPagamento.CANCELADO);
 
         auditoriaService.registrar(
                 "CANCELAR_PEDIDO",
@@ -323,7 +326,7 @@ public class PedidoService {
                         .equals(usuario.getId());
 
         if (!isAdmin && !isDonoDoPedido) {
-            throw new RegraNegocioException(
+            throw new ForbiddenException(
                     "Você não pode acessar este pedido"
             );
         }

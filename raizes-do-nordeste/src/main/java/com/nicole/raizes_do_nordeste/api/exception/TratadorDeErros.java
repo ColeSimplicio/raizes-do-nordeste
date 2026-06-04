@@ -7,8 +7,10 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @ControllerAdvice
@@ -41,14 +43,14 @@ public class TratadorDeErros {
 
         ErroResponse erro = new ErroResponse(
                 LocalDateTime.now(),
-                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.CONFLICT.value(),
                 "Erro de negócio",
                 ex.getMessage(),
                 request.getRequestURI()
         );
 
         return ResponseEntity
-                .badRequest()
+                .status(409)
                 .body(erro);
     }
 
@@ -114,5 +116,48 @@ public class TratadorDeErros {
         );
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(erro);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErroResponse> tratarForbidden(
+            ForbiddenException ex,
+            HttpServletRequest request
+    ) {
+
+        ErroResponse erro = new ErroResponse(
+                LocalDateTime.now(),
+                HttpStatus.FORBIDDEN.value(),
+                "Acesso negado",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(erro);
+    }
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErroResponse> tratarTipoInvalido(
+            MethodArgumentTypeMismatchException ex,
+            HttpServletRequest request
+    ) {
+
+        String msg = "Parâmetro inválido: " + ex.getName();
+
+        if (ex.getRequiredType() != null && ex.getRequiredType().isEnum()) {
+            msg = "Valor inválido para " + ex.getName()
+                    + ". Valores aceitos: "
+                    + Arrays.toString(ex.getRequiredType().getEnumConstants());
+        }
+
+        return ResponseEntity.badRequest().body(
+                new ErroResponse(
+                        LocalDateTime.now(),
+                        HttpStatus.BAD_REQUEST.value(),
+                        "Parâmetro inválido",
+                        msg,
+                        request.getRequestURI()
+                )
+        );
     }
 }
