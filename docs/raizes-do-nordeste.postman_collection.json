@@ -1,0 +1,1064 @@
+{
+  "info": {
+    "_postman_id": "33ad1907-4ed1-4840-83f5-e7f70b11e51b",
+    "name": "Raizes do Nordeste",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44885387",
+    "_collection_link": "https://go.postman.co/collection/44885387-33ad1907-4ed1-4840-83f5-e7f70b11e51b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Cardapio",
+      "item": [
+        {
+          "name": "Deletar item",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/unidades/6/cardapio/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades",
+                "6",
+                "cardapio",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar item",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MzAyNDAsImV4cCI6MTc4MDQzMzg0MH0.lk2uqUA58qy89Ib4_Uo6hMpMBfSitEaOf00RPXCgwGg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"sazonal\": \"true\",\n\t\"dataInicio\": \"2026-07-08\",\n\t\"dataFim\": \"2026-07-30\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/unidades/1/cardapio/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades",
+                "1",
+                "cardapio",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar item",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MzAyNDAsImV4cCI6MTc4MDQzMzg0MH0.lk2uqUA58qy89Ib4_Uo6hMpMBfSitEaOf00RPXCgwGg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"preco\": \"8.99\",\n\t\"disponivel\": \"true\",\t\n\t\"sazonal\": \"true\",\n\t\"dataInicio\": \"2026-06-28\",\n\t\"dataFim\": \"2026-07-30\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/unidades/1/cardapio/produtos/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades",
+                "1",
+                "cardapio",
+                "produtos",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Itens",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2Nzg5OTcsImV4cCI6MTc4MDY4MjU5N30.R80nI53CmZnAS0x7O3yHiROk-si8KkVJUJszYGl63-M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/unidades/1/cardapio",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades",
+                "1",
+                "cardapio"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Produto",
+      "item": [
+        {
+          "name": "Criar Produto",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"nome\": \"Mandioca frita\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/produtos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar produtos",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/produtos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar produto",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"nome\": \"Buchada de bode\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/produtos/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Unidade",
+      "item": [
+        {
+          "name": "Editar unidade",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"nome\": \"nome melhor\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/unidades/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar unidade",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"nome\": \"Unidade Principal\",\n\t\"regiao\": \"CENTROOESTE\",\n\t\"tipo\": \"COMPLETA\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/unidades",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar unidades",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MTA3MTIsImV4cCI6MTc4MDYxNDMxMn0.BsLt2Qsc3MnWIMpLN1VFFhS5tEHqklRpPL2vKgVeBeg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/unidades",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "unidades"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Estoque",
+      "item": [
+        {
+          "name": "Listar",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MTA3MTIsImV4cCI6MTc4MDYxNDMxMn0.BsLt2Qsc3MnWIMpLN1VFFhS5tEHqklRpPL2vKgVeBeg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/estoque/unidades/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "estoque",
+                "unidades",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remover produto",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2ODI4MTQsImV4cCI6MTc4MDY4NjQxNH0.LnvbwU3wCuGtotW_KWkX92HM0In-Yv8vif9kHoVlMkU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/estoque/unidades/1/produtos/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "estoque",
+                "unidades",
+                "1",
+                "produtos",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar quantidade",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2ODI4MTQsImV4cCI6MTc4MDY4NjQxNH0.LnvbwU3wCuGtotW_KWkX92HM0In-Yv8vif9kHoVlMkU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"quantidade\": \"66\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/estoque/unidades/1/produtos/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "estoque",
+                "unidades",
+                "1",
+                "produtos",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Adicionar produto",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MzAyNDAsImV4cCI6MTc4MDQzMzg0MH0.lk2uqUA58qy89Ib4_Uo6hMpMBfSitEaOf00RPXCgwGg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"quantidade\":\"3\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/estoque/unidades/1/produtos/7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "estoque",
+                "unidades",
+                "1",
+                "produtos",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pedido",
+      "item": [
+        {
+          "name": "Consultar status",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MDQzNTgsImV4cCI6MTc4MDYwNzk1OH0.FvlRaLUs4rTBeo0NI9RBo3BaFqJSA6rPPluvjcu4l_Q",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/pedidos/5/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos",
+                "5",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar pedido",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNjAyNzE5LCJleHAiOjE3ODA2MDYzMTl9.RtIWIhtHyd3pjgGhzKtIB0CQJYwv8NhiCqF3dt7rFgY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/pedidos/1111",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos",
+                "1111"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancelar pedido",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNjA3MDY4LCJleHAiOjE3ODA2MTA2Njh9.Nq4WK4Y6XzFMlMOkfvzIEl9KO34O4bGtnQSaO4Z4B10",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/pedidos/7/cancelamento",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos",
+                "7",
+                "cancelamento"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar pedido",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW51QGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNTk0NTQ4LCJleHAiOjE3ODA1OTgxNDh9.SlJBDAKH56Kq5A4QFDC3sOK3aQPnjk36HE1AOUjs7q4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": 1,\n  \"canalPedido\": \"APP\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 2,\n      \"quantidade\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pedidos",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNjA2MTQyLCJleHAiOjE3ODA2MDk3NDJ9.emktpD80_pybGcwLgXE-pT2Jw9_Pxv34qPxKTRsM9rg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/pedidos?canalPedido=APP",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos"
+              ],
+              "query": [
+                {
+                  "key": "canalPedido",
+                  "value": "afasf",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pagamento",
+      "item": [
+        {
+          "name": "Processar pagamento",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MDcyNTgsImV4cCI6MTc4MDYxMDg1OH0.DxjDPFxBu5WNIeO8HlHqii_yRDG8HSbdfyc-xA93mJQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"aprovado\": \"true\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pagamentos/pedido/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pagamentos",
+                "pedido",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Autenticacao",
+      "item": [
+        {
+          "name": "Cadastrar",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"nome\": \"\",\n\t\"email\": \"@gmail.com\",\n\t\"senha\": \"123456\",\n\t\"consentimento\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logar",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/11.2.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"email\": \"admin@gmail.com\",\n\t\"senha\": \"senhasecreta\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
