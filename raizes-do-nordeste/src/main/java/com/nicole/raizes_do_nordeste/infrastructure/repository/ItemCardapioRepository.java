@@ -17,4 +17,6 @@ public interface ItemCardapioRepository extends JpaRepository<ItemCardapio, Long
             Long unidadeId,
             Long produtoId
     );
+
+    boolean existsByProdutoId(Long produtoId);
 }

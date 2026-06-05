@@ -20,12 +20,6 @@ public class UnidadeService {
         Unidade unidade = new Unidade(dados);
         return repository.save(unidade);
     }
-    @Transactional
-    public void removerUnidade(Long id){
-        Unidade unidade = repository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Unidade não encontrada"));
-        repository.deleteById(id);
-    }
 
     public Page<UnidadeResponse> listarUnidades(Pageable pageable){
 

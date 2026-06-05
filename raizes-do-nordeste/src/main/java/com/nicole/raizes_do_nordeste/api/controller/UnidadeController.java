@@ -32,14 +32,6 @@ public class UnidadeController {
 
         return ResponseEntity.created(uri).body(new UnidadeResponse(unidade));
     }
-    
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Transactional
-    public ResponseEntity<Void> removerUnidade(@PathVariable Long id){
-        service.removerUnidade(id);
-        return ResponseEntity.noContent().build();
-    }
 
     @PutMapping("/{id}")
     @Transactional

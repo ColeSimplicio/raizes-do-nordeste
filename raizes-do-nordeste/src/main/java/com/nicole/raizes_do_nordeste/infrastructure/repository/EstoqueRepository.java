@@ -12,4 +12,6 @@ public interface EstoqueRepository extends JpaRepository<Estoque, Long> {
     Optional<Estoque> findByUnidadeIdAndProdutoId(Long unidadeId, Long produtoId);
 
     Page<Estoque> findByUnidadeId(Long unidadeId, Pageable pageable);
+
+    boolean existsByProdutoId(Long produtoId);
 }

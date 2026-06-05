@@ -24,12 +24,6 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public void removerProduto(Long id){
-        Produto produto = repository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado"));
-        repository.delete(produto);
-    }
-
     public Produto editarProduto(ProdutoRequest dados, Long id){
         Produto produto = repository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado"));

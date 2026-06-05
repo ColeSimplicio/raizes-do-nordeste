@@ -43,7 +43,7 @@ public class CardapioController {
 
         return ResponseEntity.created(uri).body(new ItemCardapioResponse(item));
     }
-    @PreAuthorize("hasRole('CLIENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENTE')")
     @GetMapping
     public ResponseEntity<Page<ItemCardapioResponse>> listarItensCardapio(
             @PathVariable Long unidadeId,

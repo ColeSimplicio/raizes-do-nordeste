@@ -57,12 +57,4 @@ public class ProdutoController {
 
     }
 
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Transactional
-    public ResponseEntity<Void> deletarProduto(@PathVariable Long id){
-        produtoService.removerProduto(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }
