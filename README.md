@@ -22,7 +22,7 @@ API backend para gerenciamento de restaurante, contendo módulos de autenticaç�
 * Spring Security + JWT
 
 ## Auditorias
-Os registros de auditoria são informações administrativas e de segurança. Neste projeto eles são armazenados para rastreabilidade e análise posterior diretamente no banco de dados, não sendo expostos pela API.
+Os registros de auditoria são informações administrativas e de segurança. Neste projeto eles são armazenados para rastreabilidade e análise dos pedidos criados e cancelados, podendo ser futuramente implementados para outras ações sensíveis do sistema com facilidade.
 
 ## Promoções e descontos
 Promoções podem ser aplicadas através de
@@ -120,6 +120,7 @@ Ela contém requisições organizadas por módulos:
 * Estoque
 * Pedidos
 * Pagamento
+* Auditoria
 
 ## Como executar os testes (ordem sugerida)
 
@@ -139,13 +140,26 @@ senhasecreta
 Copiar o token JWT retornado.
 
 ### 2. Operações administrativas
+Essas operações são necessárias para possibilitar as ações do Perfil CLIENTE.
 
 Com token de ADMIN:
 
 * Criar produtos
+```
+POST /produtos
+```
 * Criar unidades
+```
+POST /unidades
+```
 * Adicionar estoque na unidade
+```
+POST /estoque/unidades/{unidadeId}/produtos/{produtoId}
+```
 * Adicionar itens ao cardápio de determinada unidade
+```
+POST unidades/{unidadeId}/cardapio/produtos/{produtoId}
+```
 
 ### 3. Autenticação como CLIENTE
 
@@ -182,12 +196,15 @@ POST /pagamentos/pedido/{id}
 Permite aprovar ou recusar pagamento.
 
 
-### 6. Consultar status do pedido
+### 6. Consultar status do pedido (Pode ser consultado pelo ADMIN ou pelo CLIENTE que realizou pedido)
 
 ```
 GET /pedidos/{id}/status
 ```
+## 7. Consultar registro de ações sensíveis (ADMIN)
 
-
+```
+GET /auditorias
+```
 
 
