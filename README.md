@@ -140,6 +140,7 @@ senhasecreta
 Copiar o token JWT retornado.
 
 ### 2. Operações administrativas
+Essas operações são necessárias para possibilitar as ações do Perfil CLIENTE.
 
 Com token de ADMIN:
 
