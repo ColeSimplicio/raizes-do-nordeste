@@ -120,6 +120,7 @@ Ela contém requisições organizadas por módulos:
 * Estoque
 * Pedidos
 * Pagamento
+* Auditoria
 
 ## Como executar os testes (ordem sugerida)
 
@@ -182,12 +183,15 @@ POST /pagamentos/pedido/{id}
 Permite aprovar ou recusar pagamento.
 
 
-### 6. Consultar status do pedido
+### 6. Consultar status do pedido (Pode ser consultado pelo ADMIN ou pelo CLIENTE que realizou pedido)
 
 ```
 GET /pedidos/{id}/status
 ```
+## 7. Consultar registro de ações sensíveis (ADMIN)
 
-
+```
+GET /auditorias
+```
 
 
