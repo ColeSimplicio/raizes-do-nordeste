@@ -144,9 +144,21 @@ Copiar o token JWT retornado.
 Com token de ADMIN:
 
 * Criar produtos
+```
+POST /produtos
+```
 * Criar unidades
+```
+POST /unidades
+```
 * Adicionar estoque na unidade
+```
+POST /estoque/unidades/{unidadeId}/produtos/{produtoId}
+```
 * Adicionar itens ao cardápio de determinada unidade
+```
+POST unidades/{unidadeId}/cardapio/produtos/{produtoId}
+```
 
 ### 3. Autenticação como CLIENTE
 
