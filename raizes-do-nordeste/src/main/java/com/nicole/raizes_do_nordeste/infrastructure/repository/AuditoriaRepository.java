@@ -1,7 +1,11 @@
 package com.nicole.raizes_do_nordeste.infrastructure.repository;
 
 import com.nicole.raizes_do_nordeste.domain.model.Auditoria;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuditoriaRepository extends JpaRepository<Auditoria, Long> {
+    @Override
+    Page<Auditoria> findAll(Pageable pageable);
 }

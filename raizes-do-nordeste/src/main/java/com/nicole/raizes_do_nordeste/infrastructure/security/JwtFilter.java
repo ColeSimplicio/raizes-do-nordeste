@@ -1,5 +1,6 @@
 package com.nicole.raizes_do_nordeste.infrastructure.security;
 
+import com.nicole.raizes_do_nordeste.api.exception.UnauthorizedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.FilterChain;
@@ -31,15 +32,36 @@ public class JwtFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Bearer ")) {
+            SecurityContextHolder.clearContext();
             filterChain.doFilter(request, response);
             return;
         }
 
         String token = header.substring(7);
 
-        Claims claims = jwtService.extrairClaims(token);
+        Claims claims;
+
+        try {
+            claims = jwtService.extrairClaims(token);
+        } catch (Exception e) {
+            SecurityContextHolder.clearContext();
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        if (claims == null || claims.get("role") == null) {
+            SecurityContextHolder.clearContext();
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String role = claims.get("role", String.class);
+
+        if (role == null) {
+            SecurityContextHolder.clearContext();
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         UsernamePasswordAuthenticationToken auth =
                 new UsernamePasswordAuthenticationToken(

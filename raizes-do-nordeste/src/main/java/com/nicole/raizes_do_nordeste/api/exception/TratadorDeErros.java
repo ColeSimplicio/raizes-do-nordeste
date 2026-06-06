@@ -101,41 +101,6 @@ public class TratadorDeErros {
                 .body(erro);
     }
 
-    @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<ErroResponse> tratarUnauthorized(
-            UnauthorizedException ex,
-            HttpServletRequest request
-    ) {
-
-        ErroResponse erro = new ErroResponse(
-                LocalDateTime.now(),
-                HttpStatus.UNAUTHORIZED.value(),
-                "Não autorizado",
-                ex.getMessage(),
-                request.getRequestURI()
-        );
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(erro);
-    }
-
-    @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<ErroResponse> tratarForbidden(
-            ForbiddenException ex,
-            HttpServletRequest request
-    ) {
-
-        ErroResponse erro = new ErroResponse(
-                LocalDateTime.now(),
-                HttpStatus.FORBIDDEN.value(),
-                "Acesso negado",
-                ex.getMessage(),
-                request.getRequestURI()
-        );
-
-        return ResponseEntity
-                .status(HttpStatus.FORBIDDEN)
-                .body(erro);
-    }
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErroResponse> tratarTipoInvalido(
             MethodArgumentTypeMismatchException ex,

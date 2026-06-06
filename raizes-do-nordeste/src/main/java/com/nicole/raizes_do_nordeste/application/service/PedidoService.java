@@ -212,7 +212,7 @@ public class PedidoService {
         auditoriaService.registrar(
                 "CRIAR_PEDIDO",
                 "Pedido criado para usuário "
-                        + usuario.getId(), usuario
+                        + usuario.getId()
         );
         pagamento.setPedido(pedido);
 
@@ -249,7 +249,7 @@ public class PedidoService {
 
         auditoriaService.registrar(
                 "CANCELAR_PEDIDO",
-                "Pedido cancelado: " + pedido.getId(), pedido.getUsuario()
+                "Pedido cancelado: " + pedido.getId()
         );
 
         for (ItemPedido item : pedido.getItens()) {
