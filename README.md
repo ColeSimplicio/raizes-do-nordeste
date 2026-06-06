@@ -22,7 +22,7 @@ API backend para gerenciamento de restaurante, contendo módulos de autenticaç�
 * Spring Security + JWT
 
 ## Auditorias
-Os registros de auditoria são informações administrativas e de segurança. Neste projeto eles são armazenados para rastreabilidade e análise posterior diretamente no banco de dados, não sendo expostos pela API.
+Os registros de auditoria são informações administrativas e de segurança. Neste projeto eles são armazenados para rastreabilidade e análise dos pedidos criados e cancelados, podendo ser futuramente implementados para outras ações sensíveis do sistema com facilidade.
 
 ## Promoções e descontos
 Promoções podem ser aplicadas através de
