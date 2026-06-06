@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "33ad1907-4ed1-4840-83f5-e7f70b11e51b",
+    "_postman_id": "ea909474-40ab-4bb7-a216-495e14efc48b",
     "name": "Raizes do Nordeste",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "44885387",
-    "_collection_link": "https://go.postman.co/collection/44885387-33ad1907-4ed1-4840-83f5-e7f70b11e51b?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/44885387-ea909474-40ab-4bb7-a216-495e14efc48b?source=collection_link"
   },
   "item": [
     {
@@ -18,6 +18,16 @@
             "disableCookies": false
           },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MTExNTcsImV4cCI6MTc4MDcxNDc1N30.UXw8aB8oxu1M6V5fqB9AXMr3sRZL1OEcnhBwnZGQCs8",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "DELETE",
             "header": [
               {
@@ -55,7 +65,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MzAyNDAsImV4cCI6MTc4MDQzMzg0MH0.lk2uqUA58qy89Ib4_Uo6hMpMBfSitEaOf00RPXCgwGg",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDkzODcsImV4cCI6MTc4MDcxMjk4N30.PPRv19QCblrNz6TTBlUK-koaqyD6YJGMDekGinpcDQE",
                   "type": "string"
                 }
               ]
@@ -73,7 +83,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"sazonal\": \"true\",\n\t\"dataInicio\": \"2026-07-08\",\n\t\"dataFim\": \"2026-07-30\"\n}",
+              "raw": "{\n\t\"sazonal\": \"true\",\n\t\"dataInicio\": \"2026-09-08\",\n\t\"dataFim\": \"2026-07-30\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -81,7 +91,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/unidades/1/cardapio/7",
+              "raw": "http://localhost:8080/unidades/1/cardapio/8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -91,7 +101,7 @@
                 "unidades",
                 "1",
                 "cardapio",
-                "7"
+                "8"
               ]
             }
           },
@@ -110,7 +120,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MzAyNDAsImV4cCI6MTc4MDQzMzg0MH0.lk2uqUA58qy89Ib4_Uo6hMpMBfSitEaOf00RPXCgwGg",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDkzODcsImV4cCI6MTc4MDcxMjk4N30.PPRv19QCblrNz6TTBlUK-koaqyD6YJGMDekGinpcDQE",
                   "type": "string"
                 }
               ]
@@ -166,7 +176,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2Nzg5OTcsImV4cCI6MTc4MDY4MjU5N30.R80nI53CmZnAS0x7O3yHiROk-si8KkVJUJszYGl63-M",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzY5NjM2LCJleHAiOjE3ODA3NzMyMzZ9.Z-EtEFi_YT1k16kZD_zfXIjvf6vqb-X09nm6AtOCV2k",
                   "type": "string"
                 }
               ]
@@ -212,7 +222,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MTExNTcsImV4cCI6MTc4MDcxNDc1N30.UXw8aB8oxu1M6V5fqB9AXMr3sRZL1OEcnhBwnZGQCs8",
                   "type": "string"
                 }
               ]
@@ -230,7 +240,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"nome\": \"Mandioca frita\"\n}",
+              "raw": "{\n\t\"nome\": \"\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -264,7 +274,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzY2NTQ1LCJleHAiOjE3ODA3NzAxNDV9.VwX55_Ks6wvdNn316p353hc_tPWicGSmhv06Heyut28",
                   "type": "string"
                 }
               ]
@@ -303,7 +313,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MTExNTcsImV4cCI6MTc4MDcxNDc1N30.UXw8aB8oxu1M6V5fqB9AXMr3sRZL1OEcnhBwnZGQCs8",
                   "type": "string"
                 }
               ]
@@ -321,7 +331,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"nome\": \"Buchada de bode\"\n}",
+              "raw": "{\n\t\"nome\": \"\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -356,6 +366,16 @@
             "disableCookies": false
           },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDkzODcsImV4cCI6MTc4MDcxMjk4N30.PPRv19QCblrNz6TTBlUK-koaqyD6YJGMDekGinpcDQE",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "PUT",
             "header": [
               {
@@ -369,7 +389,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"nome\": \"nome melhor\"\n}",
+              "raw": "{\n\t\"tipo\": \"nome melhor\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -404,7 +424,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MjY1ODksImV4cCI6MTc4MDQzMDE4OX0.FddG3lbiX7OYD-IB65hjDzVzK8xYBeITe1PU6ZSXji4",
+                  "value": "",
                   "type": "string"
                 }
               ]
@@ -422,7 +442,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"nome\": \"Unidade Principal\",\n\t\"regiao\": \"CENTROOESTE\",\n\t\"tipo\": \"COMPLETA\"\n}",
+              "raw": "{\n\t\"nome\": \"\",\n\t\"regiao\": \"asfasfd\",\n\t\"tipo\": \"COMPLETA\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -456,7 +476,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MTA3MTIsImV4cCI6MTc4MDYxNDMxMn0.BsLt2Qsc3MnWIMpLN1VFFhS5tEHqklRpPL2vKgVeBeg",
+                  "value": "",
                   "type": "string"
                 }
               ]
@@ -541,7 +561,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2ODI4MTQsImV4cCI6MTc4MDY4NjQxNH0.LnvbwU3wCuGtotW_KWkX92HM0In-Yv8vif9kHoVlMkU",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDkzODcsImV4cCI6MTc4MDcxMjk4N30.PPRv19QCblrNz6TTBlUK-koaqyD6YJGMDekGinpcDQE",
                   "type": "string"
                 }
               ]
@@ -554,7 +574,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8080/estoque/unidades/1/produtos/",
+              "raw": "http://localhost:8080/estoque/unidades/2/produtos/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -563,9 +583,9 @@
               "path": [
                 "estoque",
                 "unidades",
-                "1",
+                "2",
                 "produtos",
-                ""
+                "1"
               ]
             }
           },
@@ -584,7 +604,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2ODI4MTQsImV4cCI6MTc4MDY4NjQxNH0.LnvbwU3wCuGtotW_KWkX92HM0In-Yv8vif9kHoVlMkU",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3Njk3NTMsImV4cCI6MTc4MDc3MzM1M30.U-0noS4wSJxxMdRrSGMPzbSxwV_Sif1pgH_OfJAZaMQ",
                   "type": "string"
                 }
               ]
@@ -610,7 +630,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/estoque/unidades/1/produtos/7",
+              "raw": "http://localhost:8080/estoque/unidades/1/produtos/3",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -621,7 +641,7 @@
                 "unidades",
                 "1",
                 "produtos",
-                "7"
+                "3"
               ]
             }
           },
@@ -640,7 +660,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA0MzAyNDAsImV4cCI6MTc4MDQzMzg0MH0.lk2uqUA58qy89Ib4_Uo6hMpMBfSitEaOf00RPXCgwGg",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDU3MjcsImV4cCI6MTc4MDcwOTMyN30.iMnE7gXr9uPjQfXx8l72lhNRdX0jsQLvNcOqZRNUoBk",
                   "type": "string"
                 }
               ]
@@ -658,7 +678,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"quantidade\":\"3\"\n}",
+              "raw": "{\n\t\"quantidade\":\"60\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -666,7 +686,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/estoque/unidades/1/produtos/7",
+              "raw": "http://localhost:8080/estoque/unidades/1/produtos/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -677,7 +697,7 @@
                 "unidades",
                 "1",
                 "produtos",
-                "7"
+                "1"
               ]
             }
           },
@@ -689,7 +709,7 @@
       "name": "Pedido",
       "item": [
         {
-          "name": "Consultar status",
+          "name": "Consultar status pedido aprovado",
           "protocolProfileBehavior": {
             "followRedirects": true,
             "disableUrlEncoding": false,
@@ -701,7 +721,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MDQzNTgsImV4cCI6MTc4MDYwNzk1OH0.FvlRaLUs4rTBeo0NI9RBo3BaFqJSA6rPPluvjcu4l_Q",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3ODU1ODcsImV4cCI6MTc4MDc4OTE4N30.qaxlJX7CF8WCRURTcdeD684KQu_RYw11pGB35V0XoCk",
                   "type": "string"
                 }
               ]
@@ -714,7 +734,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8080/pedidos/5/status",
+              "raw": "http://localhost:8080/pedidos/2/status",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -722,7 +742,7 @@
               "port": "8080",
               "path": [
                 "pedidos",
-                "5",
+                "2",
                 "status"
               ]
             }
@@ -742,7 +762,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNjAyNzE5LCJleHAiOjE3ODA2MDYzMTl9.RtIWIhtHyd3pjgGhzKtIB0CQJYwv8NhiCqF3dt7rFgY",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDU3MjcsImV4cCI6MTc4MDcwOTMyN30.iMnE7gXr9uPjQfXx8l72lhNRdX0jsQLvNcOqZRNUoBk",
                   "type": "string"
                 }
               ]
@@ -755,7 +775,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8080/pedidos/1111",
+              "raw": "http://localhost:8080/pedidos/1112",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -763,7 +783,7 @@
               "port": "8080",
               "path": [
                 "pedidos",
-                "1111"
+                "1112"
               ]
             }
           },
@@ -782,7 +802,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNjA3MDY4LCJleHAiOjE3ODA2MTA2Njh9.Nq4WK4Y6XzFMlMOkfvzIEl9KO34O4bGtnQSaO4Z4B10",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDU3MjcsImV4cCI6MTc4MDcwOTMyN30.iMnE7gXr9uPjQfXx8l72lhNRdX0jsQLvNcOqZRNUoBk",
                   "type": "string"
                 }
               ]
@@ -795,7 +815,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8080/pedidos/7/cancelamento",
+              "raw": "http://localhost:8080/pedidos/8/cancelamento",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -803,7 +823,7 @@
               "port": "8080",
               "path": [
                 "pedidos",
-                "7",
+                "8",
                 "cancelamento"
               ]
             }
@@ -811,7 +831,7 @@
           "response": []
         },
         {
-          "name": "Criar pedido",
+          "name": "Criar pedido com campo inválido",
           "protocolProfileBehavior": {
             "followRedirects": true,
             "disableUrlEncoding": false,
@@ -823,7 +843,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW51QGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNTk0NTQ4LCJleHAiOjE3ODA1OTgxNDh9.SlJBDAKH56Kq5A4QFDC3sOK3aQPnjk36HE1AOUjs7q4",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzg0Mjc2LCJleHAiOjE3ODA3ODc4NzZ9.qvjmIPpFKrj6W1lz_8cJZEDgpH4Ciarj1-h4pXI6F0M",
                   "type": "string"
                 }
               ]
@@ -841,7 +861,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"unidadeId\": 1,\n  \"canalPedido\": \"APP\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 2,\n      \"quantidade\": 1\n    }\n  ]\n}",
+              "raw": "{\n  \"unidadeId\": \"aa\",\n  \"canalPedido\": \"APP\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 3,\n      \"quantidade\": 1\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -875,7 +895,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNjA2MTQyLCJleHAiOjE3ODA2MDk3NDJ9.emktpD80_pybGcwLgXE-pT2Jw9_Pxv34qPxKTRsM9rg",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDU3MjcsImV4cCI6MTc4MDcwOTMyN30.iMnE7gXr9uPjQfXx8l72lhNRdX0jsQLvNcOqZRNUoBk",
                   "type": "string"
                 }
               ]
@@ -888,7 +908,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8080/pedidos?canalPedido=APP",
+              "raw": "http://localhost:8080/pedidos",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -903,6 +923,255 @@
                   "value": "afasf",
                   "disabled": true
                 }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar pedido com canalPedido inválido",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzg0Mjc2LCJleHAiOjE3ODA3ODc4NzZ9.qvjmIPpFKrj6W1lz_8cJZEDgpH4Ciarj1-h4pXI6F0M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": \"1\",\n  \"canalPedido\": \"INEXISTE\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 3,\n      \"quantidade\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar pedido válido",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzg0Mjc2LCJleHAiOjE3ODA3ODc4NzZ9.qvjmIPpFKrj6W1lz_8cJZEDgpH4Ciarj1-h4pXI6F0M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": \"1\",\n  \"canalPedido\": \"APP\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 1,\n      \"quantidade\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar pedido com unidade inexistente",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzg0Mjc2LCJleHAiOjE3ODA3ODc4NzZ9.qvjmIPpFKrj6W1lz_8cJZEDgpH4Ciarj1-h4pXI6F0M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": \"333333\",\n  \"canalPedido\": \"APP\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 3,\n      \"quantidade\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar pedido com estoque insuficiente",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzg0Mjc2LCJleHAiOjE3ODA3ODc4NzZ9.qvjmIPpFKrj6W1lz_8cJZEDgpH4Ciarj1-h4pXI6F0M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": \"1\",\n  \"canalPedido\": \"APP\",\n  \"metodoPagamento\": \"DEBITO\",\n  \"itens\": [\n    {\n      \"produtoId\": 3,\n      \"quantidade\": 9999\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar status pedido recusado",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3ODU1ODcsImV4cCI6MTc4MDc4OTE4N30.qaxlJX7CF8WCRURTcdeD684KQu_RYw11pGB35V0XoCk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/pedidos/1/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "pedidos",
+                "1",
+                "status"
               ]
             }
           },
@@ -926,7 +1195,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA2MDcyNTgsImV4cCI6MTc4MDYxMDg1OH0.DxjDPFxBu5WNIeO8HlHqii_yRDG8HSbdfyc-xA93mJQ",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3MDkzODcsImV4cCI6MTc4MDcxMjk4N30.PPRv19QCblrNz6TTBlUK-koaqyD6YJGMDekGinpcDQE",
                   "type": "string"
                 }
               ]
@@ -944,7 +1213,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"aprovado\": \"true\"\n}",
+              "raw": "{\n\t\"aprovado\": \"false\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -952,7 +1221,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/pagamentos/pedido/3",
+              "raw": "http://localhost:8080/pagamentos/pedido/8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -961,7 +1230,7 @@
               "path": [
                 "pagamentos",
                 "pedido",
-                "3"
+                "8"
               ]
             }
           },
@@ -993,7 +1262,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"nome\": \"\",\n\t\"email\": \"@gmail.com\",\n\t\"senha\": \"123456\",\n\t\"consentimento\": true\n}",
+              "raw": "{\n\t\"nome\": \"Pedro\",\n\t\"email\": \"pedro@gmail.com\",\n\t\"senha\": \"123456\",\n\t\"consentimento\": true\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1016,7 +1285,7 @@
           "response": []
         },
         {
-          "name": "Logar",
+          "name": "Logar válido",
           "protocolProfileBehavior": {
             "followRedirects": true,
             "disableUrlEncoding": false,
@@ -1053,6 +1322,121 @@
               "path": [
                 "auth",
                 "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auditoria",
+      "item": [
+        {
+          "name": "Listar válido",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODA3ODE3OTQsImV4cCI6MTc4MDc4NTM5NH0.iyD6D-v4eOxooWKJI5OZot9DMe6H8FERWCIHN-wFzmQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/auditorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auditorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar sem autenticação",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/auditorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auditorias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar sem autorização",
+          "protocolProfileBehavior": {
+            "followRedirects": true,
+            "disableUrlEncoding": false,
+            "disableCookies": false
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvQGdtYWlsLmNvbSIsInJvbGUiOiJDTElFTlRFIiwiaWF0IjoxNzgwNzg0Mjc2LCJleHAiOjE3ODA3ODc4NzZ9.qvjmIPpFKrj6W1lz_8cJZEDgpH4Ciarj1-h4pXI6F0M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "insomnia/12.6.0"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/auditorias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auditorias"
               ]
             }
           },
