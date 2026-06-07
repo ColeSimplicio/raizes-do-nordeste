@@ -11,6 +11,20 @@ https://github.com/ColeSimplicio/raizes-do-nordeste
 
 API backend para gerenciamento de restaurante, contendo módulos de autenticação, produtos, cardápio, unidades, estoque, pedidos e pagamentos.
 
+## Ambiente pronto para avaliação (IMPORTANTE)
+
+A aplicação já possui seed automático via Flyway, com dados iniciais populados para permitir execução imediata do sistema sem necessidade de cadastro manual.
+
+Ao iniciar o projeto, o banco já contém:
+
+* Usuário administrador padrão
+* Usuário cliente de teste
+* Unidade de restaurante pré-configurada (Raízes do Nordeste - Fortaleza)
+* Produtos típicos do Nordeste (ex: Acarajé, Baião de Dois, Carne de Sol, etc.)
+* Cardápio completo associado à unidade
+* Estoque inicial disponível para todos os produtos
+* Itens de cardápio com preços definidos
+
 
 ## Requisitos
 
@@ -102,6 +116,12 @@ Senha: senhasecreta
 
 Esse usuário deve ser utilizado para operações administrativas.
 
+### Cliente para testes
+
+```
+Email: cliente@gmail.com  
+Senha: 123456
+```
 
 ## Coleção de testes 
 
@@ -124,7 +144,7 @@ Ela contém requisições organizadas por módulos:
 
 ## Como executar os testes (ordem sugerida)
 
-### 1. Autenticação como ADMIN
+### 1. Autenticação como CLIENTE
 
 ```
 POST /auth/login
@@ -133,52 +153,23 @@ POST /auth/login
 Credenciais:
 
 ```
-admin@gmail.com
-senhasecreta
+Email: cliente@gmail.com  
+Senha: 123456
 ```
 
 Copiar o token JWT retornado.
 
-### 2. Operações administrativas
-Essas operações são necessárias para possibilitar as ações do Perfil CLIENTE.
-
-Com token de ADMIN:
-
-* Criar produtos
-```
-POST /produtos
-```
-* Criar unidades
-```
-POST /unidades
-```
-* Adicionar estoque na unidade
-```
-POST /estoque/unidades/{unidadeId}/produtos/{produtoId}
-```
-* Adicionar itens ao cardápio de determinada unidade
-```
-POST unidades/{unidadeId}/cardapio/produtos/{produtoId}
-```
-
-### 3. Autenticação como CLIENTE
-
-Criar usuário comum:
+### 2. Consultar cardápio (Token JWT)
 
 ```
-POST /auth/register
-POST /auth/login
+GET /unidades/{unidadeId}/cardapio
 ```
 
-Copiar token JWT do cliente.
-
-
-### 4. Criar pedido (CLIENTE)
+### 3. Fazer pedido 
 
 ```
 POST /pedidos
 ```
-
 O pedido valida automaticamente:
 
 * disponibilidade no cardápio
@@ -186,22 +177,36 @@ O pedido valida automaticamente:
 * regras de negócio
 * pontos de fidelidade (se aplicável)
 
+### 4. Aprovar ou recusar pagamento mock (ADMIN)
 
-### 5. Processar pagamento (ADMIN)
+Logar como admin:
+
+```
+POST /auth/login
+```
+
+Credenciais:
+
+```
+Email: admin@gmail.com  
+Senha: senhasecreta
+```
+
+Copiar token JWT.
 
 ```
 POST /pagamentos/pedido/{id}
 ```
 
-Permite aprovar ou recusar pagamento.
 
-
-### 6. Consultar status do pedido (Pode ser consultado pelo ADMIN ou pelo CLIENTE que realizou pedido)
+### 5. Consultar status (Pode ser consultado pelo ADMIN ou pelo CLIENTE que realizou pedido)
 
 ```
 GET /pedidos/{id}/status
 ```
-## 7. Consultar registro de ações sensíveis (ADMIN)
+
+
+## 6. Consultar registro de ações sensíveis (ADMIN)
 
 ```
 GET /auditorias
