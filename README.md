@@ -47,7 +47,6 @@ alteração temporária de preços no ItemCardapio, existindo também a possibil
 Atualmente não são coletados dados sensíveis do usuário, sendo informados apenas o nome, email, e senha (armazenada com hash no banco de dados), com a finalidade de autenticar e identificar o usuário, e possibilitar
 sua adesão ao programa de fidelidade.
 
-
 ## Banco de dados
 
 ### Criar banco PostgreSQL
@@ -55,6 +54,8 @@ sua adesão ao programa de fidelidade.
 ```sql
 CREATE DATABASE raizes_do_nordeste;
 ```
+
+As tabelas e dados iniciais serão criados automaticamente pelo Flyway durante a inicialização da aplicação.
 
 ## Configuração de ambiente
 
@@ -67,15 +68,26 @@ spring.datasource.username=${DB_USERNAME}
 spring.datasource.password=${DB_PASSWORD}
 ```
 
-### Exemplo de .env (ou variáveis do sistema)
+Defina as seguintes variáveis de ambiente:
 
-Crie um arquivo `.env.example`:
-
-```
+```text
 DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 ```
 
+### Windows (PowerShell)
+
+```powershell
+$env:DB_USERNAME="postgres"
+$env:DB_PASSWORD="123456"
+```
+
+### Linux/macOS
+
+```bash
+export DB_USERNAME=postgres
+export DB_PASSWORD=123456
+```
 
 ## Instalação de dependências
 
